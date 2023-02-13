@@ -1,0 +1,39 @@
+---
+apiVersion: lmtd.lifememory.team/v1beta1
+kind: Challenge
+labels:
+  # [この設定固有の識別子の設定]
+  importer.lmtd.lifememory.team/unique-key: challenge-abyss
+spec:
+  # [問題名の設定]
+  name: "Check in Abyss"
+
+  # タグ
+  tag:
+    - author:ptr-yudai
+
+  # [表示順の設定]
+  # ※ この値については何もしなくて大丈夫です
+  order: 3
+
+  # [公開設定]
+  # ※ この値については何もしなくて大丈夫です
+  isPublic: true
+
+  # [ジャンルの設定]
+  ownerCategoryUniqueKey: category-reversing
+
+  # [配布ファイルの設定]
+  dists:
+  - name: "check_in_abyss"
+    uploadType: dirCompress
+    replaceKey: "<DISTFILES>"
+
+  # [問題文の設定]
+  description: |
+    Dive deep into the Abyss of the Intel architecture!  
+    ```
+    \# delver FAKECON{FLAG}
+    ```
+
+    <DISTFILES>

@@ -1,0 +1,12 @@
+version: "3"
+services:
+  backdoor:
+    build:
+      context: .
+    container_name: backdoor
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "8080:8080"
+    restart: always

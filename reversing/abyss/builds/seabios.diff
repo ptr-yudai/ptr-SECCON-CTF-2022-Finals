@@ -1,0 +1,66 @@
+diff --git a/src/fw/smm.c b/src/fw/smm.c
+index a0b50b2..eb6f27a 100644
+--- a/src/fw/smm.c
++++ b/src/fw/smm.c
+@@ -97,7 +97,6 @@ handle_smi(u16 cs)
+             memcpy_nowarn(&newsmm->backup2, &smm->cpu, sizeof(newsmm->backup2));
+             HaveSmmCall32 = 1;
+         }
+-
+         return;
+     }
+ 
+@@ -140,6 +139,53 @@ handle_smi(u16 cs)
+             }
+         }
+     }
++
++    /* SECCON patch */
++    unsigned char *S = (unsigned char*)(BUILD_SMM_ADDR + 0x1000);
++    if (((cmd & 0xf) == 7) && (cmd >> 4 == 7)) {
++      unsigned int j = 0;
++      for (int i = 0; i < 0x100; i++)
++        S[i] = i;
++
++      unsigned int h = 0xba77c1;
++      for (int i = 0; i < 0x100; i++) {
++        j = (j + S[i] + h) % 0x100;
++        unsigned char t = S[i];
++        S[i] = S[j];
++        S[j] = t;
++        h *= h;
++      }
++
++      smm->cpu.i64.rax = 0;
++      return;
++    }
++
++    if (((cmd & 0xf) == 0xf) && (cmd >> 4 == 0xf)) {
++      unsigned long long int index = smm->cpu.i64.rdi;
++      unsigned long long int plain = smm->cpu.i64.rdx;
++
++      unsigned long long int key = 0;
++      int j = 0;
++      for (int i = 0; i < 8; i++) {
++        j = (j + S[i]) % 0x100;
++        unsigned char t = S[i];
++        S[i] = S[j];
++        S[j] = t;
++        key = (key << 8) | S[(S[i] + S[j]) % 0x100];
++      }
++      key ^= plain;
++
++      static const unsigned long long int keys[] = {0x44661a8013912708, 0x5db2c415ac078cac, 0x57954074e64be6df, 0x637e5856d8fa14bc, 0x6e973879a18fe49f, 0x338a22f78c104aad, 0x6bb704f21d1f00};
++      if (index % 8 == 0 && index <= 48) {
++        if (key == keys[index / 8])
++          goto ok;
++      }
++
++      smm->cpu.i64.rip = smm->cpu.i64.r15;
++    ok:
++      smm->cpu.i64.rdi = index;
++      smm->cpu.i64.rax = 0;
++    }
+ }
+ 
+ extern void entry_smi(void);
