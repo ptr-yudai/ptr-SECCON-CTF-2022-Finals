@@ -1,0 +1,29 @@
+func nsieve(n) {
+  flags = [true; 0x1000];
+  print("Primes:\n");
+  i = 2;
+  j = 0;
+  while i < n {
+    if flags[i] {
+      if i != 2 { print(", "); }
+      print(i);
+      j = i << 1;
+      while (j < n) {
+        flags[j] = false;
+        j = j + i;
+      }
+    }
+    i = i + 1;
+  }
+  print("\n");
+}
+
+func main() {
+  print("n = ");
+  n = scan();
+  if n < 0 || n > 0x1000 {
+    print("Invalid input\n");
+    exit(1);
+  }
+  nsieve(n);
+}

@@ -1,0 +1,30 @@
+func main() {
+    xs = [0; 256];
+    len = scan();
+    j = 0;
+
+    while j < len {
+        xs[j] = scan();
+        j = j + 1;
+    }
+
+    k = 1;
+    flag = true;
+    while true {
+        j = 0;
+        flag = true;
+        while j < len {
+            if k == xs[j] {
+                flag = false;
+                break;
+            }
+            j = j + 1;
+        }
+        if flag {
+            break;
+        }
+        k = k + 1;
+    }
+    print(k);
+
+}

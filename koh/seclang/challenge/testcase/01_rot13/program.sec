@@ -1,0 +1,60 @@
+func init_rot13_table(rot13_table) {
+	upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	lower = "abcdefghijklmnopqrstuvwxyz";
+	i = 0;
+	while i < 0x100 {
+		rot13_table[i] = i as byte;
+		i = i + 1;
+	}
+	i = 0;
+	while i < 13 {
+		rot13_table[upper[i] as uint] = upper[i+13];
+		rot13_table[upper[i+13] as uint] = upper[i];
+		rot13_table[lower[i] as uint] = lower[i+13];
+		rot13_table[lower[i+13] as uint] = lower[i];
+		i = i + 1;
+	}
+}
+
+func rot13(str, len, tab) {
+	i = 0;
+	while i < len {
+		str[i] = tab[str[i]];
+		i = i + 1;
+	}
+}
+
+func main() {
+	str = [0 as byte; 0x100];
+	len = scan();
+	if len <= 0 || len > 0x100 {
+		print("invalid length!\n");
+		return 1;
+	}
+	i = 0;
+	while i < len {
+		str[i] = scan() as byte;
+		i = i + 1;
+	}
+
+	print("input: ");
+	i = 0;
+	while i < len {
+		print(str[i]);
+		i = i + 1;
+	}
+	print("\n");
+
+	rot13_table = [0 as byte; 0x100];
+	init_rot13_table(rot13_table);
+
+	rot13(str, len, rot13_table);
+	print("output: ");
+	i = 0;
+	while i < len {
+		print(str[i]);
+		i = i + 1;
+	}
+	print("\n");
+	return 0;
+}

@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+nasm $@ -fELF64 -o program.o
+ld -no-warn-rwx-segments program.o -o program.elf --omagic -z execstack
+base64 program.elf

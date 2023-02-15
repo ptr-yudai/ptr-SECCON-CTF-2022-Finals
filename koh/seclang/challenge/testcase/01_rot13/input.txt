@@ -1,0 +1,17 @@
+16
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('A'), ord('Z')) if randint(0, 1) else randint(ord('a'), ord('z'))}
+${randint(ord('0'), ord('9'))}
+${randint(ord('0'), ord('9'))}
+${randint(ord(' '), ord('~'))}
+${randint(ord(' '), ord('~'))}

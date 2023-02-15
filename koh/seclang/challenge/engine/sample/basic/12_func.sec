@@ -1,0 +1,23 @@
+func f1() {
+  print("f1() = ");
+  return 1;
+}
+
+func f2() {
+  print("f2() = ");
+  return 2;
+}
+
+func f3() {
+  print("f3() = ");
+  return 3;
+}
+
+func main() {
+  ftable = [f1, f2, f3];
+  print("idx = ");
+  idx = scan();
+
+  print((ftable[idx])());
+  print("\n");
+}

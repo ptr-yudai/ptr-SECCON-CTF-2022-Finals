@@ -1,0 +1,18 @@
+func main() {
+    xs = [0, 0, 0, 0];
+    s = scan();
+
+    j = 0;
+    x = 0;
+    while j < s {
+        x = scan();
+        xs[x] = xs[x] + 1;
+
+        j = j + 1;
+    }
+
+    print(xs[0]);print("\n");
+    print(xs[1]);print("\n");
+    print(xs[2]);print("\n");
+    print(xs[3]);print("\n");
+}

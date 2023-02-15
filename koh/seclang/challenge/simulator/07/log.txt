@@ -1,0 +1,493 @@
+[2023/01/30 13:57:17] OK: check_upload --> No changes have been made
+[2023/01/30 13:57:17] INFO: Empty tickets. Skipping.
+[2023/01/30 13:57:17] OK: upload_container --> {"status":"ok"}
+
+[2023/01/30 13:57:17] INFO: submit_correct_flag --> Sending 'SECCON{catapult_68420580485520277382a7f9edd7b297}'
+[2023/01/30 13:57:17] OK: check_log --> len(log)=7
+[2023/01/30 13:57:17] OK: check_testcase
+[2023/01/30 13:57:17] OK 1: request_compile --> ticket='2734a1217a36c3796cbe31190394fd81'
+[2023/01/30 13:57:17] OK: submit_correct_flag --> Pwned!
+[2023/01/30 13:57:20] OK 2: request_compile --> !Compile Error!
+[2023/01/30 13:57:27] INFO: submit_wrong_flag --> Sending '@[;:],./\'
+[2023/01/30 13:57:27] OK: submit_wrong_flag --> Invalid flag format
+[2023/01/30 13:57:32] OK 1: request_compile --> ticket='268679eea3c4aed8b8d508cb62d6b33f'
+[2023/01/30 13:57:33] OK 2: request_compile --> '268679eea3c4aed8b8d508cb62d6b33f' compiled successfully!
+[2023/01/30 13:59:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 13:59:16] OK: check_testcase
+[2023/01/30 13:59:16] OK: check_log --> len(log)=10
+[2023/01/30 14:01:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:01:17] OK: check_log --> len(log)=10
+[2023/01/30 14:01:17] OK: check_testcase
+[2023/01/30 14:03:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:03:17] OK: check_testcase
+[2023/01/30 14:03:17] OK: check_log --> len(log)=10
+[2023/01/30 14:05:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:05:16] OK: check_log --> len(log)=10
+[2023/01/30 14:05:16] OK: check_testcase
+[2023/01/30 14:07:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:07:17] OK: check_testcase
+[2023/01/30 14:07:17] OK: check_log --> len(log)=11
+[2023/01/30 14:09:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:09:17] OK: check_log --> len(log)=12
+[2023/01/30 14:09:17] OK: check_testcase
+[2023/01/30 14:11:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:11:16] OK: check_log --> len(log)=12
+[2023/01/30 14:11:16] OK: check_testcase
+[2023/01/30 14:13:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:13:16] OK: check_log --> len(log)=12
+[2023/01/30 14:13:16] OK: check_testcase
+[2023/01/30 14:15:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:15:17] OK: check_log --> len(log)=12
+[2023/01/30 14:15:17] OK: check_testcase
+[2023/01/30 14:17:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:17:17] OK 1: request_compile --> ticket='f94e6f7f4354aab50e6a386c91fe0da0'
+[2023/01/30 14:17:17] OK: check_testcase
+[2023/01/30 14:17:17] OK 1: request_execute --> label='f1df9e4987edeeda1343129b8712b0ea'
+[2023/01/30 14:17:17] OK: check_log --> len(log)=14
+[2023/01/30 14:17:18] OK 2: request_execute --> 'f1df9e4987edeeda1343129b8712b0ea' run successfully!
+[2023/01/30 14:17:18] OK 2: request_compile --> 'f94e6f7f4354aab50e6a386c91fe0da0' compiled successfully!
+[2023/01/30 14:17:32] OK 1: request_compile --> ticket='da4bd6dba75ff0b245e7b82941e70510'
+[2023/01/30 14:17:33] OK 2: request_compile --> 'da4bd6dba75ff0b245e7b82941e70510' compiled successfully!
+[2023/01/30 14:19:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:19:16] OK: check_testcase
+[2023/01/30 14:19:16] OK: check_log --> len(log)=14
+[2023/01/30 14:21:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:21:17] OK: check_log --> len(log)=14
+[2023/01/30 14:21:17] OK: check_testcase
+[2023/01/30 14:23:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:23:17] OK: check_testcase
+[2023/01/30 14:23:17] OK: check_log --> len(log)=14
+[2023/01/30 14:25:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:25:16] OK: check_log --> len(log)=14
+[2023/01/30 14:25:16] OK: check_testcase
+[2023/01/30 14:27:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:27:16] OK: check_log --> len(log)=15
+[2023/01/30 14:27:16] OK: check_testcase
+[2023/01/30 14:29:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:29:17] OK: check_testcase
+[2023/01/30 14:29:17] OK: check_log --> len(log)=15
+[2023/01/30 14:31:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:31:17] OK: check_log --> len(log)=15
+[2023/01/30 14:31:17] OK: check_testcase
+[2023/01/30 14:33:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:33:16] OK: check_testcase
+[2023/01/30 14:33:16] OK: check_log --> len(log)=15
+[2023/01/30 14:35:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:35:17] OK: check_log --> len(log)=15
+[2023/01/30 14:35:17] OK: check_testcase
+[2023/01/30 14:37:17] OK 1: request_execute --> label='8ad85d94aa6a8e8e04d17c2a692d91fc'
+[2023/01/30 14:37:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:37:17] OK 1: request_compile --> ticket='53a0d64e851c1a1a06cfddbd383109db'
+[2023/01/30 14:37:17] OK: check_log --> len(log)=17
+[2023/01/30 14:37:17] OK: check_testcase
+[2023/01/30 14:37:18] OK 2: request_execute --> '8ad85d94aa6a8e8e04d17c2a692d91fc' run successfully!
+[2023/01/30 14:37:18] OK 2: request_compile --> '53a0d64e851c1a1a06cfddbd383109db' compiled successfully!
+[2023/01/30 14:37:32] OK 1: request_compile --> ticket='4638dfee6a3f4c171de831695f795936'
+[2023/01/30 14:37:34] OK 2: request_compile --> '4638dfee6a3f4c171de831695f795936' compiled successfully!
+[2023/01/30 14:39:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:39:16] OK: check_log --> len(log)=17
+[2023/01/30 14:39:16] OK: check_testcase
+[2023/01/30 14:41:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:41:17] OK: check_log --> len(log)=17
+[2023/01/30 14:41:17] OK: check_testcase
+[2023/01/30 14:43:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:43:17] OK: check_testcase
+[2023/01/30 14:43:17] OK: check_log --> len(log)=17
+[2023/01/30 14:45:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:45:16] OK: check_log --> len(log)=17
+[2023/01/30 14:45:16] OK: check_testcase
+[2023/01/30 14:47:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:47:16] OK: check_log --> len(log)=17
+[2023/01/30 14:47:16] OK: check_testcase
+[2023/01/30 14:49:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:49:17] OK: check_testcase
+[2023/01/30 14:49:17] OK: check_log --> len(log)=17
+[2023/01/30 14:51:17] OK: check_log --> len(log)=17
+[2023/01/30 14:51:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:51:17] OK: check_testcase
+[2023/01/30 14:53:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:53:16] OK: check_testcase
+[2023/01/30 14:53:16] OK: check_log --> len(log)=17
+[2023/01/30 14:55:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:55:17] OK: check_log --> len(log)=17
+[2023/01/30 14:55:17] OK: check_testcase
+[2023/01/30 14:57:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:57:17] OK 1: request_execute --> label='40734795f82e9ba8bcb3611d8f8dceef'
+[2023/01/30 14:57:17] OK: check_testcase
+[2023/01/30 14:57:17] OK: check_log --> len(log)=18
+[2023/01/30 14:57:17] OK 1: request_compile --> ticket='186adccc2785e7c1f0d81f0977fe2b5e'
+[2023/01/30 14:57:18] OK 2: request_execute --> '40734795f82e9ba8bcb3611d8f8dceef' run successfully!
+[2023/01/30 14:57:18] OK 2: request_compile --> '186adccc2785e7c1f0d81f0977fe2b5e' compiled successfully!
+[2023/01/30 14:57:32] OK 1: request_compile --> ticket='b732e3d3ec2e205d963ae68f8bb37af2'
+[2023/01/30 14:57:34] OK 2: request_compile --> 'b732e3d3ec2e205d963ae68f8bb37af2' compiled successfully!
+[2023/01/30 14:59:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 14:59:16] OK: check_log --> len(log)=18
+[2023/01/30 14:59:16] OK: check_testcase
+[2023/01/30 15:01:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:01:16] OK: check_testcase
+[2023/01/30 15:01:16] OK: check_log --> len(log)=18
+[2023/01/30 15:03:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:03:17] OK: check_log --> len(log)=18
+[2023/01/30 15:03:17] OK: check_testcase
+[2023/01/30 15:05:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:05:17] OK: check_log --> len(log)=18
+[2023/01/30 15:05:17] OK: check_testcase
+[2023/01/30 15:07:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:07:16] OK: check_log --> len(log)=19
+[2023/01/30 15:07:16] OK: check_testcase
+[2023/01/30 15:09:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:09:17] OK: check_log --> len(log)=20
+[2023/01/30 15:09:17] OK: check_testcase
+[2023/01/30 15:11:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:11:17] OK: check_log --> len(log)=20
+[2023/01/30 15:11:17] OK: check_testcase
+[2023/01/30 15:13:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:13:16] OK: check_testcase
+[2023/01/30 15:13:16] OK: check_log --> len(log)=20
+[2023/01/30 15:15:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:15:16] OK: check_log --> len(log)=20
+[2023/01/30 15:15:16] OK: check_testcase
+[2023/01/30 15:17:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:17:17] OK: check_testcase
+[2023/01/30 15:17:17] OK 1: request_compile --> ticket='636fcd93392eee15e40c0d1b975909e1'
+[2023/01/30 15:17:17] OK 1: request_execute --> label='469a4f6b9205a8566aebd003bc1507a9'
+[2023/01/30 15:17:17] OK: check_log --> len(log)=22
+[2023/01/30 15:17:18] OK 2: request_execute --> '469a4f6b9205a8566aebd003bc1507a9' run successfully!
+[2023/01/30 15:17:19] OK 2: request_compile --> '636fcd93392eee15e40c0d1b975909e1' compiled successfully!
+[2023/01/30 15:17:32] OK 1: request_compile --> ticket='15dce48949d38acccb15df3d0d75fb3d'
+[2023/01/30 15:17:33] OK 2: request_compile --> '15dce48949d38acccb15df3d0d75fb3d' compiled successfully!
+[2023/01/30 15:19:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:19:17] OK: check_log --> len(log)=22
+[2023/01/30 15:19:17] OK: check_testcase
+[2023/01/30 15:21:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:21:16] OK: check_log --> len(log)=22
+[2023/01/30 15:21:16] OK: check_testcase
+[2023/01/30 15:23:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:23:17] OK: check_testcase
+[2023/01/30 15:23:17] OK: check_log --> len(log)=22
+[2023/01/30 15:25:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:25:17] OK: check_log --> len(log)=22
+[2023/01/30 15:25:17] OK: check_testcase
+[2023/01/30 15:27:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:27:16] OK: check_testcase
+[2023/01/30 15:27:16] OK: check_log --> len(log)=23
+[2023/01/30 15:29:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:29:16] OK: check_log --> len(log)=24
+[2023/01/30 15:29:16] OK: check_testcase
+[2023/01/30 15:31:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:31:17] OK: check_testcase
+[2023/01/30 15:31:17] OK: check_log --> len(log)=24
+[2023/01/30 15:33:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:33:17] OK: check_log --> len(log)=24
+[2023/01/30 15:33:17] OK: check_testcase
+[2023/01/30 15:35:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:35:16] OK: check_log --> len(log)=24
+[2023/01/30 15:35:16] OK: check_testcase
+[2023/01/30 15:37:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:37:17] OK 1: request_execute --> label='1e86faa3b6a9f947fd961c0facdc655e'
+[2023/01/30 15:37:17] OK: check_testcase
+[2023/01/30 15:37:17] OK: check_log --> len(log)=26
+[2023/01/30 15:37:17] OK 1: request_compile --> ticket='11250a0b4b22f0f4fb7ee6f75208e105'
+[2023/01/30 15:37:18] OK 2: request_compile --> '11250a0b4b22f0f4fb7ee6f75208e105' compiled successfully!
+[2023/01/30 15:37:18] OK 2: request_execute --> '1e86faa3b6a9f947fd961c0facdc655e' run successfully!
+[2023/01/30 15:37:32] OK 1: request_compile --> ticket='f19e52e350b72beb9bf30f7989e09ace'
+[2023/01/30 15:37:33] OK 2: request_compile --> 'f19e52e350b72beb9bf30f7989e09ace' compiled successfully!
+[2023/01/30 15:39:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:39:17] OK: check_testcase
+[2023/01/30 15:39:17] OK: check_log --> len(log)=26
+[2023/01/30 15:41:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:41:16] OK: check_log --> len(log)=26
+[2023/01/30 15:41:16] OK: check_testcase
+[2023/01/30 15:43:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:43:17] OK: check_log --> len(log)=26
+[2023/01/30 15:43:17] OK: check_testcase
+[2023/01/30 15:45:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:45:17] OK: check_log --> len(log)=26
+[2023/01/30 15:45:17] OK: check_testcase
+[2023/01/30 15:47:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:47:16] OK: check_testcase
+[2023/01/30 15:47:16] OK: check_log --> len(log)=26
+[2023/01/30 15:49:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:49:16] OK: check_testcase
+[2023/01/30 15:49:16] OK: check_log --> len(log)=26
+[2023/01/30 15:51:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:51:17] OK: check_log --> len(log)=26
+[2023/01/30 15:51:17] OK: check_testcase
+[2023/01/30 15:53:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:53:17] OK: check_log --> len(log)=26
+[2023/01/30 15:53:17] OK: check_testcase
+[2023/01/30 15:55:16] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:55:16] OK: check_testcase
+[2023/01/30 15:55:16] OK: check_log --> len(log)=26
+[2023/01/30 15:57:17] OK: check_upload --> Successfully updated on 2023/01/30 13:57:22
+[2023/01/30 15:57:17] OK: check_log --> len(log)=29
+[2023/01/30 15:57:17] OK: check_testcase
+[2023/01/30 15:57:17] INFO: submit_correct_flag --> Sending 'SECCON{TokyoWesterns_eaef72cf70da4a512313137644045421}'
+[2023/01/30 15:57:17] OK 1: request_compile --> ticket='5c23fd60afdc25d22aec87f592f81e00'
+[2023/01/30 15:57:17] OK 1: request_execute --> label='8abbf7070775bc03c1f21b4df8b4900a'
+[2023/01/30 15:57:17] OK: upload_container --> {"status":"ok"}
+
+[2023/01/30 15:57:17] OK: submit_correct_flag --> Pwned!
+[2023/01/30 15:57:18] OK 2: request_execute --> '8abbf7070775bc03c1f21b4df8b4900a' run successfully!
+[2023/01/30 15:57:18] OK 2: request_compile --> '5c23fd60afdc25d22aec87f592f81e00' compiled successfully!
+[2023/01/30 15:57:27] INFO: submit_wrong_flag --> Sending '@[;:],./\'
+[2023/01/30 15:57:27] OK: submit_wrong_flag --> Invalid flag format
+[2023/01/30 15:57:32] OK 1: request_compile --> ticket='39b0fa994fba94ac6092625ad11a2f5f'
+[2023/01/30 15:57:33] OK 2: request_compile --> '39b0fa994fba94ac6092625ad11a2f5f' compiled successfully!
+[2023/01/30 15:59:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 15:59:17] OK: check_log --> len(log)=30
+[2023/01/30 15:59:17] OK: check_testcase
+[2023/01/30 16:01:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:01:16] OK: check_testcase
+[2023/01/30 16:01:16] OK: check_log --> len(log)=30
+[2023/01/30 16:03:16] OK: check_testcase
+[2023/01/30 16:03:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:03:16] OK: check_log --> len(log)=30
+[2023/01/30 16:05:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:05:17] OK: check_testcase
+[2023/01/30 16:05:17] OK: check_log --> len(log)=30
+[2023/01/30 16:07:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:07:17] OK: check_testcase
+[2023/01/30 16:07:17] OK: check_log --> len(log)=30
+[2023/01/30 16:09:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:09:16] OK: check_testcase
+[2023/01/30 16:09:16] OK: check_log --> len(log)=30
+[2023/01/30 16:11:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:11:17] OK: check_testcase
+[2023/01/30 16:11:17] OK: check_log --> len(log)=30
+[2023/01/30 16:13:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:13:17] OK: check_log --> len(log)=30
+[2023/01/30 16:13:17] OK: check_testcase
+[2023/01/30 16:15:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:15:16] OK: check_log --> len(log)=30
+[2023/01/30 16:15:16] OK: check_testcase
+[2023/01/30 16:17:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:17:16] OK 1: request_execute --> label='825a8871cb6c243c3fc35ad2d8e88ce2'
+[2023/01/30 16:17:17] OK: check_log --> len(log)=30
+[2023/01/30 16:17:17] OK 1: request_compile --> ticket='f01e255bf8a57a1dae3eaf33478eb16a'
+[2023/01/30 16:17:17] OK: check_testcase
+[2023/01/30 16:17:18] OK 2: request_execute --> '825a8871cb6c243c3fc35ad2d8e88ce2' run successfully!
+[2023/01/30 16:17:19] OK 2: request_compile --> 'f01e255bf8a57a1dae3eaf33478eb16a' compiled successfully!
+[2023/01/30 16:17:31] OK 1: request_compile --> ticket='056c4237e2508a7682fb60435d792417'
+[2023/01/30 16:17:34] OK 2: request_compile --> '056c4237e2508a7682fb60435d792417' compiled successfully!
+[2023/01/30 16:19:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:19:17] OK: check_log --> len(log)=30
+[2023/01/30 16:19:17] OK: check_testcase
+[2023/01/30 16:21:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:21:16] OK: check_testcase
+[2023/01/30 16:21:16] OK: check_log --> len(log)=30
+[2023/01/30 16:23:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:23:16] OK: check_log --> len(log)=30
+[2023/01/30 16:23:16] OK: check_testcase
+[2023/01/30 16:25:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:25:17] OK: check_log --> len(log)=30
+[2023/01/30 16:25:17] OK: check_testcase
+[2023/01/30 16:27:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:27:17] OK: check_log --> len(log)=30
+[2023/01/30 16:27:17] OK: check_testcase
+[2023/01/30 16:29:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:29:16] OK: check_testcase
+[2023/01/30 16:29:16] OK: check_log --> len(log)=30
+[2023/01/30 16:31:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:31:17] OK: check_log --> len(log)=30
+[2023/01/30 16:31:17] OK: check_testcase
+[2023/01/30 16:33:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:33:17] OK: check_log --> len(log)=30
+[2023/01/30 16:33:17] OK: check_testcase
+[2023/01/30 16:35:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:35:16] OK: check_log --> len(log)=30
+[2023/01/30 16:35:16] OK: check_testcase
+[2023/01/30 16:37:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:37:16] OK 1: request_compile --> ticket='c795840bfb10b6a8997a445bbad9d698'
+[2023/01/30 16:37:16] OK: check_testcase
+[2023/01/30 16:37:16] OK: check_log --> len(log)=30
+[2023/01/30 16:37:16] OK 1: request_execute --> label='a3112f1387957f7033d8f6ab413a992f'
+[2023/01/30 16:37:17] OK 2: request_compile --> 'c795840bfb10b6a8997a445bbad9d698' compiled successfully!
+[2023/01/30 16:37:17] OK 2: request_execute --> 'a3112f1387957f7033d8f6ab413a992f' run successfully!
+[2023/01/30 16:37:31] OK 1: request_compile --> ticket='42e6bf9e19edf2f2bfedf9d67a53a690'
+[2023/01/30 16:37:32] OK 2: request_compile --> '42e6bf9e19edf2f2bfedf9d67a53a690' compiled successfully!
+[2023/01/30 16:39:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:39:17] OK: check_log --> len(log)=30
+[2023/01/30 16:39:17] OK: check_testcase
+[2023/01/30 16:41:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:41:17] OK: check_log --> len(log)=30
+[2023/01/30 16:41:17] OK: check_testcase
+[2023/01/30 16:43:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:43:16] OK: check_log --> len(log)=30
+[2023/01/30 16:43:16] OK: check_testcase
+[2023/01/30 16:45:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:45:17] OK: check_testcase
+[2023/01/30 16:45:17] OK: check_log --> len(log)=30
+[2023/01/30 16:47:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:47:17] OK: check_log --> len(log)=30
+[2023/01/30 16:47:17] OK: check_testcase
+[2023/01/30 16:49:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:49:16] OK: check_log --> len(log)=30
+[2023/01/30 16:49:16] OK: check_testcase
+[2023/01/30 16:51:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:51:16] OK: check_testcase
+[2023/01/30 16:51:17] OK: check_log --> len(log)=30
+[2023/01/30 16:53:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:53:17] OK: check_log --> len(log)=30
+[2023/01/30 16:53:17] OK: check_testcase
+[2023/01/30 16:55:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:55:16] OK: check_testcase
+[2023/01/30 16:55:16] OK: check_log --> len(log)=30
+[2023/01/30 16:57:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:57:16] OK 1: request_compile --> ticket='6dc35234e7b82c51b1be03a7152b3456'
+[2023/01/30 16:57:16] OK: check_testcase
+[2023/01/30 16:57:16] OK: check_log --> len(log)=30
+[2023/01/30 16:57:16] OK 1: request_execute --> label='4c7ad7760d6bfb7843ff63e90f8d8318'
+[2023/01/30 16:57:17] OK 2: request_compile --> '6dc35234e7b82c51b1be03a7152b3456' compiled successfully!
+[2023/01/30 16:57:17] OK 2: request_execute --> '4c7ad7760d6bfb7843ff63e90f8d8318' run successfully!
+[2023/01/30 16:57:31] OK 1: request_compile --> ticket='6492943b26dde91e8f114308781fe658'
+[2023/01/30 16:57:32] OK 2: request_compile --> '6492943b26dde91e8f114308781fe658' compiled successfully!
+[2023/01/30 16:59:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 16:59:17] OK: check_log --> len(log)=30
+[2023/01/30 16:59:17] OK: check_testcase
+[2023/01/30 17:01:17] OK: check_log --> len(log)=30
+[2023/01/30 17:01:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:01:17] OK: check_testcase
+[2023/01/30 17:03:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:03:16] OK: check_log --> len(log)=30
+[2023/01/30 17:03:16] OK: check_testcase
+[2023/01/30 17:05:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:05:17] OK: check_log --> len(log)=30
+[2023/01/30 17:05:17] OK: check_testcase
+[2023/01/30 17:07:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:07:17] OK: check_log --> len(log)=30
+[2023/01/30 17:07:17] OK: check_testcase
+[2023/01/30 17:09:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:09:16] OK: check_log --> len(log)=30
+[2023/01/30 17:09:16] OK: check_testcase
+[2023/01/30 17:11:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:11:16] OK: check_log --> len(log)=30
+[2023/01/30 17:11:16] OK: check_testcase
+[2023/01/30 17:13:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:13:17] OK: check_log --> len(log)=30
+[2023/01/30 17:13:17] OK: check_testcase
+[2023/01/30 17:15:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:15:16] OK: check_log --> len(log)=30
+[2023/01/30 17:15:16] OK: check_testcase
+[2023/01/30 17:17:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:17:16] OK 1: request_execute --> label='1671b46296b6215de09178bbe8d0f18a'
+[2023/01/30 17:17:16] OK 1: request_compile --> ticket='04c13d8dfe3936a10db7765a9617cca5'
+[2023/01/30 17:17:16] OK: check_log --> len(log)=30
+[2023/01/30 17:17:16] OK: check_testcase
+[2023/01/30 17:17:17] OK 2: request_execute --> '1671b46296b6215de09178bbe8d0f18a' run successfully!
+[2023/01/30 17:17:17] OK 2: request_compile --> '04c13d8dfe3936a10db7765a9617cca5' compiled successfully!
+[2023/01/30 17:17:31] OK 1: request_compile --> ticket='c0563cea567498c42d1483e4344a55d7'
+[2023/01/30 17:17:33] OK 2: request_compile --> 'c0563cea567498c42d1483e4344a55d7' compiled successfully!
+[2023/01/30 17:19:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:19:17] OK: check_log --> len(log)=30
+[2023/01/30 17:19:17] OK: check_testcase
+[2023/01/30 17:21:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:21:17] OK: check_log --> len(log)=30
+[2023/01/30 17:21:17] OK: check_testcase
+[2023/01/30 17:23:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:23:16] OK: check_log --> len(log)=30
+[2023/01/30 17:23:16] OK: check_testcase
+[2023/01/30 17:25:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:25:17] OK: check_log --> len(log)=30
+[2023/01/30 17:25:17] OK: check_testcase
+[2023/01/30 17:27:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:27:17] OK: check_testcase
+[2023/01/30 17:27:17] OK: check_log --> len(log)=30
+[2023/01/30 17:29:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:29:16] OK: check_testcase
+[2023/01/30 17:29:16] OK: check_log --> len(log)=30
+[2023/01/30 17:31:16] OK: check_log --> len(log)=30
+[2023/01/30 17:31:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:31:16] OK: check_testcase
+[2023/01/30 17:33:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:33:17] OK: check_testcase
+[2023/01/30 17:33:17] OK: check_log --> len(log)=30
+[2023/01/30 17:35:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:35:17] OK: check_testcase
+[2023/01/30 17:35:17] OK: check_log --> len(log)=30
+[2023/01/30 17:37:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:37:16] OK: check_log --> len(log)=30
+[2023/01/30 17:37:16] OK: check_testcase
+[2023/01/30 17:37:16] OK 1: request_execute --> label='2fd76e99b2ce00d6bca204bdf8fa1e1a'
+[2023/01/30 17:37:16] OK 1: request_compile --> ticket='2e386d9275ba7f5e4c3534bd468891e6'
+[2023/01/30 17:37:17] OK 2: request_execute --> '2fd76e99b2ce00d6bca204bdf8fa1e1a' run successfully!
+[2023/01/30 17:37:17] OK 2: request_compile --> '2e386d9275ba7f5e4c3534bd468891e6' compiled successfully!
+[2023/01/30 17:37:31] OK 1: request_compile --> ticket='17f7f2e16db30614de4e08edfe3e99de'
+[2023/01/30 17:37:33] OK 2: request_compile --> '17f7f2e16db30614de4e08edfe3e99de' compiled successfully!
+[2023/01/30 17:39:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:39:17] OK: check_log --> len(log)=30
+[2023/01/30 17:39:17] OK: check_testcase
+[2023/01/30 17:41:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:41:17] OK: check_log --> len(log)=30
+[2023/01/30 17:41:17] OK: check_testcase
+[2023/01/30 17:43:16] OK: check_log --> len(log)=30
+[2023/01/30 17:43:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:43:16] OK: check_testcase
+[2023/01/30 17:45:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:45:17] OK: check_log --> len(log)=30
+[2023/01/30 17:45:17] OK: check_testcase
+[2023/01/30 17:47:17] OK: check_log --> len(log)=30
+[2023/01/30 17:47:17] OK: check_testcase
+[2023/01/30 17:47:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:49:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:49:16] OK: check_log --> len(log)=30
+[2023/01/30 17:49:16] OK: check_testcase
+[2023/01/30 17:51:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:51:16] OK: check_log --> len(log)=30
+[2023/01/30 17:51:16] OK: check_testcase
+[2023/01/30 17:53:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:53:17] OK: check_log --> len(log)=30
+[2023/01/30 17:53:17] OK: check_testcase
+[2023/01/30 17:55:17] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:55:17] OK: check_log --> len(log)=30
+[2023/01/30 17:55:17] OK: check_testcase
+[2023/01/30 17:57:16] OK 1: request_compile --> ticket='4de3cd5344fd5d07bf33c46c3b7593b6'
+[2023/01/30 17:57:16] OK 1: request_execute --> label='32600b9ff7d5bc4353f0cbda6168c57b'
+[2023/01/30 17:57:16] OK: check_upload --> Successfully updated on 2023/01/30 15:57:20
+[2023/01/30 17:57:16] INFO: submit_correct_flag --> Sending 'SECCON{traP_c8d1e4525af888ac8f5adb000f874e84}'
+[2023/01/30 17:57:16] OK: check_log --> len(log)=30
+[2023/01/30 17:57:16] OK: upload_container --> {"status":"ok"}
+
+[2023/01/30 17:57:16] OK: check_testcase
+[2023/01/30 17:57:17] OK: submit_correct_flag --> Pwned!
+[2023/01/30 17:57:17] OK 2: request_execute --> '32600b9ff7d5bc4353f0cbda6168c57b' run successfully!
+[2023/01/30 17:57:18] OK 2: request_compile --> '4de3cd5344fd5d07bf33c46c3b7593b6' compiled successfully!
+[2023/01/30 17:57:26] INFO: submit_wrong_flag --> Sending 'SECCON{hoge!"#$%&'()~=~|`{+*}<>?_hoge@[;:]./\}'
+[2023/01/30 17:57:26] OK: submit_wrong_flag --> Wrong flag
+[2023/01/30 17:57:31] OK 1: request_compile --> ticket='126b7cea52beb6a2c2ec16734072d486'
+[2023/01/30 17:57:32] OK 2: request_compile --> '126b7cea52beb6a2c2ec16734072d486' compiled successfully!
+[2023/01/30 17:59:16] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 17:59:16] OK: check_log --> len(log)=30
+[2023/01/30 17:59:16] OK: check_testcase
+[2023/01/30 18:01:17] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:01:17] OK: check_log --> len(log)=30
+[2023/01/30 18:01:17] OK: check_testcase
+[2023/01/30 18:03:16] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:03:16] OK: check_testcase
+[2023/01/30 18:03:16] OK: check_log --> len(log)=30
+[2023/01/30 18:05:16] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:05:16] OK: check_log --> len(log)=30
+[2023/01/30 18:05:16] OK: check_testcase
+[2023/01/30 18:07:17] OK: check_log --> len(log)=30
+[2023/01/30 18:07:17] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:07:17] OK: check_testcase
+[2023/01/30 18:09:17] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:09:17] OK: check_log --> len(log)=30
+[2023/01/30 18:09:17] OK: check_testcase
+[2023/01/30 18:11:16] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:11:16] OK: check_testcase
+[2023/01/30 18:11:16] OK: check_log --> len(log)=30
+[2023/01/30 18:13:16] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:13:17] OK: check_testcase
+[2023/01/30 18:13:17] OK: check_log --> len(log)=30
+[2023/01/30 18:15:17] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:15:17] OK: check_testcase
+[2023/01/30 18:15:17] OK: check_log --> len(log)=30
+[2023/01/30 18:17:16] OK: check_upload --> Successfully updated on 2023/01/30 17:57:20
+[2023/01/30 18:17:16] OK: check_log --> len(log)=30
+[2023/01/30 18:17:16] OK 1: request_execute --> label='186a8a75a9670f8b3099f679c78c2d31'
+[2023/01/30 18:17:16] OK 1: request_compile --> ticket='1878b24df5aa87df3f028359f984a8e9'
+[2023/01/30 18:17:16] OK: check_testcase
+[2023/01/30 18:17:17] OK 2: request_compile --> '1878b24df5aa87df3f028359f984a8e9' compiled successfully!
+[2023/01/30 18:17:17] OK 2: request_execute --> '186a8a75a9670f8b3099f679c78c2d31' run successfully!
+[2023/01/30 18:17:31] OK 1: request_compile --> ticket='ab5b84f8fe562302be6ab61fa5aa7dda'

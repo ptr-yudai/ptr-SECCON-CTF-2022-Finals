@@ -1,0 +1,12 @@
+
+func main() {
+    xs = [scan(),scan(),scan(),scan(),scan(),scan(),scan(),scan(),scan(),-1];
+    x = 0;
+    i = 0;
+    while xs[i] != -1 {
+        x = (x + xs[i]) % 100 + 20;
+        print(x as byte);
+        i = i + 1;
+    }
+    print(0x0a as byte);
+}

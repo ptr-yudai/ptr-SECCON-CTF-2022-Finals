@@ -1,0 +1,10 @@
+func main() {
+    s = "/bin/cat /flag.txt\x00";
+    cnt = 0;
+    in = scan();
+    while in == scan() && true || false {
+        cnt = cnt + 1;
+    }
+    print(cnt);
+    print(s);
+}

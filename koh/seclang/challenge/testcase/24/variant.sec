@@ -1,0 +1,15 @@
+
+func main() {
+    x = [0x68732f6e69622f, 29400045130965551, 0x6873, 26739];
+C=scan;
+    S = [C(),C(),C(),C(),C(),C(),C(),C(),C(),-1];
+    O = 0;
+    N = 0;
+    while S[N] != -1 {
+        O = (O + S[N]) % 100 + 20;
+        print(O as byte);
+        N = N + 1;
+    }
+    print(0x0a as byte);
+    "print('SECCON{.......}');";
+}

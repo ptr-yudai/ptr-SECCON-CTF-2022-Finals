@@ -1,0 +1,29 @@
+func f(h, x) {
+    if x <= 0 {
+        return 0;
+    }
+    t = [g, h][x % 2];
+    return g(x - 1) + f(t, x / 2);
+}
+
+func g(x) {
+    if x <= 0 {
+        return 0;
+    }
+    return x + f(g, x / 4);
+}
+
+
+
+
+func main() {
+    len = scan();
+    x = 0;
+    while len != 0 {
+        x = scan();
+        print(f(f, x));
+        print("\n");
+        
+        len = len - 1;
+    }
+}

@@ -1,0 +1,71 @@
+func strlen(s) {
+  i = 0;
+  while s[i] { i = i + 1; }
+  return i;
+}
+
+func hex(val, s) {
+  c = 0;
+  i = 7;
+  while val {
+    c = ((val as uint) & (0xf as uint)) as int;
+    if c < 10 {
+      s[i] = (0x30 + c) as byte;
+    } else {
+      s[i] = (0x61 + c - 10) as byte;
+    }
+    i = i - 1;
+    val = (val as uint) >> (4 as uint);
+  }
+}
+
+func crc32_gen_table(table) {
+  rem = 0;
+  i = 0;
+  j = 0;
+  while i < 256 {
+    rem = i as uint;
+    j = 0;
+    while j < 8 {
+      if rem & (1 as uint) {
+        rem = rem >> (1 as uint);
+        rem = rem ^ (0xedb88320 as uint);
+      } else {
+        rem = rem >> (1 as uint);
+      }
+      j = j + 1;
+    }
+    table[i] = rem;
+    i = i + 1;
+  }
+}
+
+func crc32(data, len, table) {
+  octet = 0;
+  crc = 0xffffffff as uint;
+  i = 0;
+  while i < len {
+    octet = data[i] as uint;
+    crc = (crc >> (8 as uint)) ^ table[(crc & (0xff as uint)) ^ octet];
+    i = i + 1;
+  }
+  return crc ^ (0xffffffff as uint);
+}
+
+func main() {
+  table = [0 as uint; 256];
+  crc32_gen_table(table);
+  s1 = "Hello, World!\x00";
+  s2 = "The quick brown fox jumps over the lazy dog\x00";
+
+  s = [0x30 as byte; 8];
+  print("crc32(s1) = 0x");
+  hex(crc32(s1, strlen(s1), table), s);
+  print(s);
+  print("\n");
+
+  print("crc32(s2) = 0x");
+  hex(crc32(s2, strlen(s2), table), s);
+  print(s);
+  print("\n");
+}

@@ -1,0 +1,22 @@
+
+
+func main() {
+    kami = [0; 100];
+    templra = scan();
+
+    while templra { 
+    print(zenbu(kami, scan()));print("\n");
+        templra = templra - 1;
+    }
+}
+func zenbu(kami, k) {
+    if kami[k] != 0 {
+        return kami[k];
+    }
+    if k <= 2 {
+        return 1;
+    }
+    kami[k] = (zenbu(kami, k-1) + zenbu(kami, k - 2)) % ${randint(2, 1333333337)};
+    return kami[k];
+}
+

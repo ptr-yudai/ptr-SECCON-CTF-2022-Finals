@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard - Heptarchy</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.21/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.21/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.21/dist/js/uikit-icons.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    </head>
+    <body>
+        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav uk-margin-left">
+                    <li class="uk-active"><a>Team: {{ session['teamname'] }}</a></li>
+                </ul>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav uk-margin-right">
+                    <li class="uk-active"><a href="#">Dashboard</a></li>
+                    <li class="uk-parent"><a href="/log">Log</a></li>
+                    <li class="uk-parent"><a href="/rule" target="_blank">Rule</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="uk-margin-top uk-margin-bottom uk-container">
+            <section>
+                <h2>Current Mission (Language: {{ lang['name'] }})</h2>
+                {% if lang['name'] == 'N/A' %}
+                <p>Game is over.</p>
+                {% else %}
+                <p>Reverse engineer the following program and upload compilable code.</p>
+                <p>Program: <a href="/storage/program" class="margin-left">{{ lang['prog'] }}</a></p>
+                {% if lang['smal'] %}
+                <p class="uk-text-danger">* The server calculates diff for only ".text" sections to reduce computation time in this language.</p>
+                {% endif %}
+            </section>
+            <section>
+                <h2>Upload Code</h2>
+                <p>Upload the decompiled code:</p>
+                <div class="uk-margin" uk-margin>
+                    <div uk-form-custom="target: true">
+                        <input type="file" id="code" aria-label="Custom controls">
+                        <input class="uk-input uk-form-width-medium" type="text" placeholder="{{ lang['code'] }}" aria-label="Custom controls" disabled>
+                    </div>
+                    <button id="upload" class="uk-button uk-button-default">Upload</button>
+                </div>
+                {% endif %}
+            </section>
+            <section>
+                <h2>Time Table</h2>
+                <table class="uk-table uk-table-divider uk-table-justify">
+                    <thead>
+                        <tr class="uk-text-center">
+                            <th class="uk-text-middle">Time</th>
+                            {% if lang['name'] == "C" %}<td class="uk-background-primary uk-light">10:00-11:00<br><span class="uk-label">Now</span></td>
+                            {% else %}<td>10:00-11:00</td>{% endif %}
+                            {% if lang['name'] == "C++" %}<td class="uk-background-primary uk-light">11:00-12:00<br><span class="uk-label">Now</span></td>
+                            {% else %}<td>11:00-12:00</td>{% endif %}
+                            {% if lang['name'] == "Rust" %}<td class="uk-background-primary uk-light">12:00-13:00<br><span class="uk-label">Now</span></td>
+                            {% else %}<td>12:00-13:00</td>{% endif %}
+                            {% if lang['name'] == "Go" %}<td class="uk-background-primary uk-light">13:00-14:00<br><span class="uk-label">Now</span></td>
+                            {% else %}<td>13:00-14:00</td>{% endif %}
+                            {% if lang['name'] == "Python" %}<td class="uk-background-primary uk-light">14:00-15:00<br><span class="uk-label">Now</span></td>
+                            {% else %}<td>14:00-15:00</td>{% endif %}
+                            {% if lang['name'] == "D" %}<td class="uk-background-primary uk-light">15:00-16:00<br><span class="uk-label">Now</span></td>
+                            {% else %}<td>15:00-16:00</td>{% endif %}
+                            {% if lang['name'] == "WebAssembly" %}<td class="uk-background-primary uk-light">16:00-17:00<br><span class="uk-label">Now</span></td>
+                            {% else %}<td>16:00-17:00</td>{% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="uk-text-center">
+                            <th class="uk-text-middle">Target</th>
+                            <td><img src="/static/img/c.svg" alt="C" width="64px"></td>
+                            <td><img src="/static/img/cpp.svg" alt="Dart" width="64px"></td>
+                            <td><img src="/static/img/rust.svg" alt="Rust" width="64px"></td>
+                            <td><img src="/static/img/go.png" alt="go" width="64px"></td>
+                            <td><img src="/static/img/python.png" alt="Python" width="64px"></td>
+                            <td><img src="/static/img/d.png" alt="D" width="48px"></td>
+                            <td><img src="/static/img/wasm.svg" alt="WebAssembly" width="64px"></td>
+                        </tr>
+                        <tr class="uk-text-center">
+                            <th class="uk-text-middle">Compiler</th>
+                            <td><a href="/storage/compiler/compiler_c.zip">compiler_c.zip</a></td>
+                            <td><a href="/storage/compiler/compiler_cpp.zip">compiler_cpp.zip</a></td>
+                            <td><a href="/storage/compiler/compiler_rust.zip">compiler_rust.zip</a></td>
+                            <td><a href="/storage/compiler/compiler_go.zip">compiler_go.zip</a></td>
+                            <td><a href="/storage/compiler/compiler_python.zip">compiler_python.zip</a></td>
+                            <td><a href="/storage/compiler/compiler_d.zip">compiler_d.zip</a></td>
+                            <td><a href="/storage/compiler/compiler_wasm.zip">compiler_wasm.zip</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </body>
+    <script>
+     $('#upload').on('click', function() {
+         let fd = new FormData();
+         fd.append('code', $('#code').prop('files')[0]);
+         $.ajax('/api/upload', {
+             type: 'POST',
+             data: fd, dataType: 'json',
+             processData: false, contentType: false, cache: false,
+             xhrFields: { withCredentials: true }, timeout: 5000,
+         }).done(data => {
+             if (data.response === 'ok') {
+                 UIkit.notification({
+                     message: "Successfully uploaded", status: 'success'
+                 });
+             } else {
+                 UIkit.notification({
+                     message: data.reason, status: 'danger'
+                 });
+             }
+         }).fail(error => {
+             UIkit.notification({
+                 message: `${error.status} ${error.statusText}`, status: 'danger'
+             });
+         });
+     });
+    </script>
+</html>

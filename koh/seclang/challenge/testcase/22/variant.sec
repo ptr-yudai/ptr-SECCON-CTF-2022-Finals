@@ -1,0 +1,1 @@
+func main() {m = [main];j = [0; 256];fla_g = scan();xs = 0;while xs < fla_g {    j[xs] = scan();    xs = xs + 1;}galf = 1;flag = true;while true {    xs = 0;    flag = true;    while xs < fla_g {        if galf == j[xs] {            flag = false;            break;        }        xs = xs + 1;    }    if flag {        break;    }    galf = galf + 1;}print(galf);}

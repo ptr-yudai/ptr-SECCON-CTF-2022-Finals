@@ -1,0 +1,23 @@
+func f(mem, s, n) {
+    if n == 0 {
+        return 0;
+    }
+    mem[s % 256] = mem[(s + 333) % 256] + mem[(s - 1) % 256];
+    return (mem[s % 256] + f(mem, 2*s + 1, n - 1) + f(mem, s + 1, n - 1)) % 14443;
+}
+
+func main() {
+    s = scan();
+    n = scan();
+    mem = [0; 256];
+    len = 256;
+    i = 0;
+    while i < 256 {
+        mem[i] = i;
+        i = i + 1;
+    }
+
+    print(f(mem, s, n));
+    print("\n");
+
+}

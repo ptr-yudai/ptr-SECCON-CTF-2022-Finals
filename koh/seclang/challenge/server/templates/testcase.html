@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ teamname }} - SLHub Testcase</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.40/moment-timezone.min.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper blue darken-2">
+                <span style="margin-left: 0.5em;" class="brand-logo">Testcase Status ({{ teamname }})</span>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/playground/{{ session['teamid'] }}">Playground</a></li>
+                    <li><a href="/testcase/{{ session['teamid'] }}">Testcase</a></li>
+                    <li><a href="/rule" target="_blank">Rules</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="container">
+            <h2>Testcase ({{ teamname }})</h2>
+            <div class="input-field">
+                <select>
+                    {% for team in teams %}
+                    <option value="{{ team['id'] }}" {% if team['id'] == teamid %}selected{% endif %}>{{ team['name'] }}</option>
+                    {% endfor %}
+                </select>
+                <label>Target Team</label>
+            </div>
+            <p id="timer" class="flow-text red-text text-darken-4">Next testcase: ????/??/?? ??:??:??</p>
+            <!-- Rounds -->
+            <ul class="collapsible" id="testcase">
+                <li id="result-template-row" class="hide">
+                    <div class="collapsible-header"></div>
+                    <div class="collapsible-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Testcase</th>
+                                    <th>Compile</th>
+                                    <th>Execute</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+            </ul>
+        </main>
+
+        <script>
+         const showError = (message) => {
+             M.toast({html: `Error: ${message}`,
+                      displayLength: 5000});
+         };
+
+         const renderTable = (testcases) => {
+             let list = $('#testcase');
+
+             if (testcases.length === 0) {
+                 let row = $('#result-template-row').clone();
+                 row.removeAttr('id');
+                 row.children().eq(0).text('No testcase finished yet');
+                 row.children().eq(1).text('No testcase finished yet');
+                 row.removeClass('hide');
+                 row.appendTo(list);
+                 return;
+             }
+
+             let test = 1;
+             console.log(testcases);
+             testcases.forEach((testcase) => {
+                 let row = $('#result-template-row').clone();
+                 row.removeAttr('id');
+                 let tbody = row.children().find('tbody');
+
+                 const SCORE_UNIT = 2;
+                 let score = 0, num = 1;
+                 Object.keys(testcase).forEach((id) => {
+                     let test = testcase[id];
+                     let line = $('<tr></tr>');
+                     $('<td></td>').text(num++).appendTo(line);
+                     let ok = true;
+                     if (test.compile) {
+                         let link = `&nbsp;(<a href="/result/compile/${test.compile[1]}" target="_blank">&#128279 Testcase</a>)`;
+                         if (test.compile[0] === true) {
+                             $('<td class="green-text"></td>').html('OK &#10004;' + link).appendTo(line);
+                         } else {
+                             $('<td class="red-text"></td>').html(test.compile[2] + link).appendTo(line);
+                             ok = false;
+                         }
+                     } else {
+                         $('<td></td>').text('running...').appendTo(line);
+                         ok = false;
+                     }
+                     if (test.execute) {
+                         let link = `&nbsp;(<a href="/result/execute/${test.execute[1]}" target="_blank">&#128279 Result</a>)`;
+                         if (test.execute[0] === true) {
+                             $('<td class="green-text"></td>').html('OK &#10004;' + link).appendTo(line);
+                         } else {
+                             $('<td class="red-text"></td>').html(test.execute[2] + link).appendTo(line);
+                             ok = false;
+                         }
+                     } else {
+                         $('<td></td>').text('executing...').appendTo(line);
+                         ok = false;
+                     }
+                     if (ok) {
+                         $('<td class="green-text"></td>').html('&#10004;').appendTo(line);
+                         score += SCORE_UNIT;
+                     } else {
+                         $('<td class="red-text"></td>').html('&#10060;').appendTo(line);
+                     }
+                     line.appendTo(tbody);
+                 });
+
+                 row.children().eq(0).text(`Testcase #${test++} (score: ${score})`);
+                 row.removeClass('hide');
+                 row.prependTo(list);
+             })
+             
+         }
+
+         $(document).ready(function(){
+             $('.collapsible').collapsible();
+             $('.tabs').tabs();
+
+             $('select').formSelect();
+             $('select').change(function() {
+                 const id = $(this).val();
+                 window.location.href = `/testcase/${id}`;
+             });
+
+             /* Get testcase */
+             $.ajax({
+                 url: `/api/testcase/{{ teamid }}`,
+                 type: 'GET',
+                 timeout: 3000,
+             }).done((data) => {
+                 /* Successfully called API */
+                 if (data.status === 'ok') {
+                     renderTable(data.testcase);
+                 } else {
+                     showError(data.error);
+                 }
+             }).fail((resp) => {
+                 showError(`${resp.status} ${resp.statusText}`);
+             });
+
+             moment.tz.setDefault('Asia/Tokyo');
+             const now = moment();
+             const next = now.add(5 - (now.minute() % 5), 'minutes');
+             $('#timer').text("Next testcase: " + next.format('YYYY/MM/DD HH:mm:00'));
+         });
+        </script>
+    </body>
+</html>

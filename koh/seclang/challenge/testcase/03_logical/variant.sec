@@ -1,0 +1,2 @@
+func pwn(v){print(v);print(0x0A as byte);}
+func main(){a=scan()as uint;b=scan()as uint;c=scan()as uint;v=${randint(0, (1<<64)-1)} as uint;pwn(a|v);pwn(a&v);pwn(a^v);pwn(a&&v);pwn(a||v);pwn(a^b);pwn(a^b^c);pwn(!a);pwn(!b);pwn(!c);}

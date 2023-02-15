@@ -1,0 +1,8 @@
+func main() {
+    cnt = 0;
+    in = scan();
+    while in == scan() {
+        cnt = cnt + 1;
+    }
+    print(cnt);
+}

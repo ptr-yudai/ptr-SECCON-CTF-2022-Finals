@@ -1,0 +1,20 @@
+func main() {
+f = [main];
+xs = [0; 100];
+payload = [0];
+offset = 0;
+while true {
+payload[0] = scan();
+if payload[0] == -1 {
+    offset = offset - 1;
+    while offset > 1 {
+        print(xs[offset] + xs[offset-1]);
+        print("\n");
+        offset = offset - 2;
+    }
+    return;
+}
+xs[offset] = payload[0];
+offset = offset + 1;
+}
+}

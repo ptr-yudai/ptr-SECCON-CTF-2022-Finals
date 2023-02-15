@@ -1,0 +1,12 @@
+func main() {
+    _ = [${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}];
+    c_ = [0,1,2,3][scan()];
+    if c_ == 1 {
+        print("y${randint(1, 10)}o"); main();
+    }
+    print(c_);
+    if c_ != 3 {
+        main();
+    }
+    "/bin/sh;";
+}

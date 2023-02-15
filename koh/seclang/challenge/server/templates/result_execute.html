@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Run Result - SLHub</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <main class="container">
+            <h2>Run Result</h2>
+            <!-- Spinner -->
+            <div id="spinner" class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <h4>Input</h4>
+            <div class="row hide" id="input-form">
+                <div id="input" class="card-panel grey darken-4 grey-text text-lighten-5">
+                </div>
+            </div>
+
+            <!-- Output -->
+            <h4>Output</h4>
+            <div class="row hide" id="output-form">
+                <div id="output" class="card-panel grey darken-4 grey-text text-lighten-5">
+                </div>
+            </div>
+        </main>
+
+        <script>
+         const showError = (message) => {
+             M.toast({html: `Error: ${message}`,
+                      displayLength: 5000});
+         };
+         const from_hex = (hex) => {
+             if (hex == '') return '';
+             const bytes = new Uint8Array(hex.match(/[\da-f]{2}/gi).map(h => parseInt(h, 16)));
+             const decoder = new TextDecoder("utf-8");
+             return decoder.decode(bytes);
+         }
+
+         $(document).ready(function(){
+             $.ajax({
+                 url: '/api/execute/{{ label }}',
+                 type: 'GET',
+                 xhrFields: { withCredentials: true },
+                 timeout: 3000,
+             }).done((data) => {
+                 /* Successfully called API */
+                 console.log(data);
+                 if (data.status === 'ok') {
+                     $('#input-form').removeClass('hide');
+                     $.each(from_hex(data.response.input).split('\n'), (i, l) => {
+                         $('#input').append($('<span/>', {text: l}))
+                                    .append($('<br/>'));
+                     });
+                     $('#output-form').removeClass('hide');
+                     $.each(from_hex(data.response.output).split('\n'), (i, l) => {
+                         $('#output').append($('<span/>', {text: l}))
+                                     .append($('<br/>'));
+                     });
+                 } else if (data.status === 'wait') {
+                     showError("Label not found");
+                 } else {
+                     showError(data.error);
+                 }
+                 $('#spinner').addClass('hide');
+             }).fail((resp) => {
+                 /* Something went wrong with API call */
+                 if (resp.responseJSON)
+                     showError(resp.responseJSON.error);
+                 else
+                     showError(`${resp.status} ${resp.statusText}`);
+                 $('#spinner').addClass('hide');
+             });
+         });
+        </script>
+    </body>
+</html>

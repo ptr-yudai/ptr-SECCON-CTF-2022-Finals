@@ -1,0 +1,17 @@
+func a() {
+    print("Hello\n");
+}
+
+func b() {
+    print("World\n");
+}
+
+func main() {
+    in = scan();
+
+    v = [a, b];
+    while in != 0 {
+        (v[in % 2])();
+        in = in / 2;
+    }
+}

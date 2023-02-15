@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SLHub Login</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <main>
+            <center>
+                <div class="section"></div>
+                <h5 class="indigo-text">Enter your team token to login</h5>
+                <div class="section"></div>
+
+                <div class="container">
+                    <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input class="validate" type="password" id="token">
+                                    <label for="password">Team Token</label>
+                                </div>
+                                <span>Check the <a href="/rule" target="_blank">rule</a> before login</span>
+                            </div>
+                            <br/>
+                            <center>
+                                <div class="row">
+                                    <button id="login" class="col s12 btn btn-large waves-effect indigo">Login</button>
+                                </div>
+                            </center>
+                        </form>
+                    </div>
+                </div>
+            </center>
+        </main>
+
+        <script>
+         $('#login').on('click', () => {
+             const token = $('#token').val();
+             $.ajax({
+                 url: '/api/login',
+                 type: 'POST',
+                 contentType: 'application/json',
+                 dataType: 'json',
+                 data: JSON.stringify({ token }),
+                 xhrFields: { withCredentials: true },
+                 timeout: 3000,
+             }).done((data) => {
+                 /* Successfully called API */
+                 if (data.status === 'ok') {
+                     window.location.href = '/dashboard'
+                 } else {
+                     M.toast({
+                         html: `Error: ${data.error}`,
+                         displayLength: 5000,
+                     });
+                 }
+             }).fail((resp) => {
+                 /* Something went wrong with API call */
+                 if (resp.responseJSON) {
+                     M.toast({
+                         html: `Error: ${resp.responseJSON.error}`,
+                         displayLength: 5000,
+                     });
+                 } else {
+                     M.toast({
+                         html: `Unknown Error: ${resp.statusText}`,
+                         displayLength: 5000,
+                     });
+                 }
+             });
+         });
+        </script>
+    </body>
+</html>

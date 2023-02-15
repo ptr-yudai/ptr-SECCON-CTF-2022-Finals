@@ -1,0 +1,11 @@
+func main() {
+    choice = scan();
+    if choice == 1 {
+        print("yo");
+        main();
+    }
+    print(choice);
+    if choice != 3 {
+        main();
+    }
+}

@@ -1,0 +1,123 @@
+// Program
+prog: [func_decl+]
+
+// Declaration
+func_decl: "func" func_name "(" param_list ")" stmt
+func_name: ident
+param_list: ident?
+    | ident ("," ident)*
+
+// Statement
+?stmt: "{" stmt_list "}"
+    | common_stmt
+?stmt_list: stmt*
+?common_stmt: expr_stmt
+    | assign_stmt
+    | if_stmt
+    | while_stmt
+    | break_stmt
+    | return_stmt
+?expr_stmt: expr ";"
+assign_stmt: target "=" expr ";"
+?target: ident | index_expr_ref
+
+if_stmt: "if" expr stmt ["else" stmt]
+while_stmt: "while" expr stmt
+break_stmt: "break" ";"
+return_stmt: "return" expr? ";"
+
+// expression
+expr: or_or_expr
+or_or_expr: and_and_expr
+    | or_or_expr "||" and_and_expr
+and_and_expr: or_expr
+    | and_and_expr "&&" or_expr
+or_expr: xor_expr
+    | or_expr "|" xor_expr
+xor_expr: and_expr
+    | xor_expr "^" and_expr
+and_expr: cmp_expr
+    | and_expr "&" cmp_expr
+cmp_expr: shift_expr OP_EQ shift_expr
+    | shift_expr OP_NEQ shift_expr
+    | shift_expr OP_LTE shift_expr
+    | shift_expr OP_GTE shift_expr
+    | shift_expr OP_LT shift_expr
+    | shift_expr OP_GT shift_expr
+    | shift_expr
+shift_expr: add_expr
+    | shift_expr OP_SHL add_expr
+    | shift_expr OP_SHR add_expr
+add_expr: mul_expr
+    | add_expr OP_ADD mul_expr
+    | add_expr OP_SUB mul_expr
+mul_expr: unary_expr
+    | mul_expr OP_MUL unary_expr
+    | mul_expr OP_DIV unary_expr
+    | mul_expr OP_MOD unary_expr
+unary_expr: OP_NOT unary_expr
+    | OP_ADD unary_expr
+    | OP_SUB unary_expr
+    | cast_expr
+    | index_expr
+    | call_expr
+cast_expr: unary_expr "as" type
+index_expr: unary_expr "[" expr "]"
+index_expr_ref: unary_expr "[" expr "]"
+call_expr: call_expr "(" argument ")"
+    | primary_expr
+argument: expr?
+    | expr ("," expr)*
+primary_expr: ident
+    | number_literal
+    | string_literal
+    | boolean_literal
+    | array_literal
+    | "(" expr ")"
+
+// Literal
+ident: CNAME
+number_literal: DEC | HEX
+string_literal: ESCAPED_STRING
+boolean_literal: BOOL_TRUE | BOOL_FALSE
+array_literal: "[" array_literal_values "]"
+    | "[" array_literal_value ";" number_literal "]"
+array_literal_values: array_literal_value?
+    | array_literal_value ("," array_literal_value)*
+?array_literal_value: expr
+
+type: typename
+?typename: TYPE_BOOL | TYPE_BYTE | TYPE_UINT | TYPE_INT
+
+HEX.2: ["+"|"-"] "0x" HEXDIGIT+
+DEC.1: INT
+
+TYPE_BOOL: "bool"
+TYPE_BYTE: "byte"
+TYPE_UINT: "uint"
+TYPE_INT : "int"
+
+OP_ADD: "+"
+OP_SUB: "-"
+OP_MUL: "*"
+OP_DIV: "/"
+OP_MOD: "%"
+OP_NOT: "!"
+OP_SHL: "<<"
+OP_SHR: ">>"
+OP_GTE: ">="
+OP_GT : ">"
+OP_LTE: "<="
+OP_LT : "<"
+OP_NEQ: "!="
+OP_EQ : "=="
+
+BOOL_TRUE : "true"
+BOOL_FALSE: "false"
+
+%import common.CNAME
+%import common.ESCAPED_STRING
+%import common.HEXDIGIT
+%import common.INT
+%import common.WS
+%ignore WS

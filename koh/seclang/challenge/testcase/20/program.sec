@@ -1,0 +1,29 @@
+func f(mem) {
+    mem[0] = mem[0] * 2 + 1;
+}
+
+func g(mem) {
+    mem[0] = mem[0] - 1;
+}
+
+func h(mem) {
+    g(mem);
+    f(mem);
+}
+
+func i(mem) {
+    mem[0] = 98765;
+}
+
+
+func main() {
+    a = scan();
+    b = scan();
+
+    x = [f, g][a % 2];
+    y = [h, i][a % 2];
+
+    mem = [a + b];
+    ([x, y][b % 2])(mem);
+    print(mem[0]);
+}

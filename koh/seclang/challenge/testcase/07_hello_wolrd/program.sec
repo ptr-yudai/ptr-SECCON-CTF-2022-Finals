@@ -1,0 +1,14 @@
+func main() {
+	xs = [0 as byte; 0x100];
+	len = scan();
+    i = 0;
+    while i < len {
+        xs[i] = scan() as byte;
+        i = i + 1;
+    }
+
+    print(xs);
+    print("\n");
+
+	return 0;
+}

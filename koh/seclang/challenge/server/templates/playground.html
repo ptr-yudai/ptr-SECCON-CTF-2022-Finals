@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ teamname }} - SLHub Playground</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper blue darken-2">
+                <span style="margin-left: 0.5em;" class="brand-logo">Playground (target: {{ teamname }})</span>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/playground/{{ session['teamid'] }}">Playground</a></li>
+                    <li><a href="/testcase/{{ session['teamid'] }}">Testcase</a></li>
+                    <li><a href="/rule" target="_blank">Rules</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="container">
+            <h2>Playground ({{ teamname }})</h2>
+            <div class="input-field">
+                <select>
+                    {% for team in teams %}
+                    <option value="{{ team['id'] }}" {% if team['id'] == teamid %}selected{% endif %}>{{ team['name'] }}</option>
+                    {% endfor %}
+                </select>
+                <label>Target Team</label>
+            </div>
+            <p>{% if session['teamid'] == teamid %}You can test your compiler.{% else %}Exploit {{ teamname }}'s compiler and steal the flag in <code>/flag.txt</code>{% endif %}</p>
+            <!-- Code -->
+            <div class="row">
+                <input type="hidden" id="ticket">
+                <div class="input-field col s12">
+                    <textarea id="code" class="materialize-textarea"></textarea>
+                    <label for="code">SecLang Code</label>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="input" class="materialize-textarea"></textarea>
+                    <label for="input">Input Text (Hex string)</label>
+                </div>
+                <button id="compile" class="btn btn-large waves-effect indigo">Compile</button>
+                <button id="execute" class="btn btn-large waves-effect indigo hide">Execute</button>
+            </div>
+
+            <!-- Output -->
+            <div class="row">
+                <div id="output" class="card-panel grey darken-4 grey-text text-lighten-5 hide">
+                </div>
+            </div>
+
+            <!-- Assembly -->
+            <div class="row hide" id="assemble-form">
+                <div class="input-field col s12">
+                    <textarea id="asm" class="materialize-textarea" readonly></textarea>
+                    <label for="asm">Assembly Code</label>
+                </div>
+            </div>
+
+            <!-- Spinner -->
+            <div id="spinner" class="preloader-wrapper big active hide">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+         const showError = (message) => {
+             M.toast({html: `Error: ${message}`,
+                      displayLength: 5000});
+         };
+         const from_hex = (hex) => {
+             if (hex === '') return '';
+             const bytes = new Uint8Array(hex.match(/[\da-f]{2}/gi).map(h => parseInt(h, 16)));
+             const decoder = new TextDecoder("utf-8");
+             return decoder.decode(bytes);
+         }
+
+         $('#compile').on('click', () => {
+             $('#output').addClass('hide');
+             $('#compile').attr('disabled', true);
+             const teamid = {{ teamid }};
+             const code = $('#code').val();
+             $.ajax({
+                 url: '/api/compile',
+                 type: 'POST',
+                 contentType: 'application/json',
+                 dataType: 'json',
+                 data: JSON.stringify({ code, target: {{ teamid }} }),
+                 xhrFields: { withCredentials: true },
+                 timeout: 3000,
+             }).done((data) => {
+                 /* Successfully called API */
+                 if (data.status === 'ok') {
+                     waitCompiler(data.ticket);
+                 } else {
+                     showError(data.error);
+                     $('#compile').removeAttr('disabled');
+                 }
+             }).fail((resp) => {
+                 /* Something went wrong with API call */
+                 if (resp.responseJSON)
+                     showError(resp.responseJSON.error);
+                 else
+                     showError(`${resp.status} ${resp.statusText}`);
+                 $('#compile').removeAttr('disabled');
+             });
+         });
+
+         const waitCompiler = (ticket) => {
+             $('#ticket').val(ticket);
+             $('#spinner').removeClass('hide');
+             const checkStatus = (ticket) => {
+                 $.ajax({
+                     url: `/api/compile/${ticket}`,
+                     type: 'GET',
+                     xhrFields: { withCredentials: true },
+                     timeout: 3000,
+                 }).done((data) => {
+                     /* Successfully called API */
+                     if (data.status === 'ok') {
+                         if (data.response.asm) {
+                             $('#assemble-form').removeClass('hide');
+                             $('#asm').val(data.response.asm);
+                             M.textareaAutoResize($('#asm'));
+                             M.updateTextFields();
+                         }
+
+                         if (data.response.result == 'ok') {
+                             /* Compile success */
+                             $('#code').attr('readonly', true);
+                             $('#execute').removeClass('hide');
+                             $('#compile').addClass('hide');
+                         } else {
+                             /* Compile error */
+                             $('#execute').addClass('hide');
+                             $('#output').empty();
+                             $('#output').removeClass('hide');
+                             $('#output').append($('<span/>', {text: "[Compile Error]"}))
+                                         .append($('<br/>'));
+                             $.each(data.response.error.split('\n'), (i, l) => {
+                                 $('#output').append($('<span/>', {text: l}))
+                                             .append($('<br/>'));
+                             });
+                         }
+                     } else if (data.status == 'wait') {
+                         setTimeout(checkStatus, 1000, ticket)
+                         return;
+                     } else {
+                         showError(data.error);
+                     }
+                     $('#spinner').addClass('hide');
+                     $('#compile').removeAttr('disabled');
+                 }).fail((resp) => {
+                     /* Something went wrong with API call */
+                     if (resp.responseJSON)
+                         showError(resp.responseJSON.error);
+                     else
+                         showError(`${resp.status} ${resp.statusText}`);
+                     $('#spinner').addClass('hide');
+                     $('#compile').removeAttr('disabled');
+                 });
+             };
+
+             setTimeout(checkStatus, 1000, ticket)
+         };
+
+         $('#execute').on('click', () => {
+             let ticket = $('#ticket').val();
+             let input = $('#input').val();
+             $('#execute').attr('disabled', true);
+             $.ajax({
+                 url: '/api/execute/' + ticket,
+                 type: 'POST',
+                 contentType: 'application/json',
+                 dataType: 'json',
+                 data: JSON.stringify({ input })
+             }).done((data) => {
+                 /* Successfully called API */
+                 if (data.status === 'ok') {
+                     waitExecutor(data.label);
+                 } else {
+                     showError(data.error);
+                     $('#execute').removeAttr('disabled');
+                 }
+             }).fail((resp) => {
+                 /* Something went wrong with API call */
+                 if (resp.responseJSON)
+                     showError(resp.responseJSON.error);
+                 else
+                     showError(`${resp.status} ${resp.statusText}`);
+                 $('#execute').removeAttr('disabled');
+             });
+         });
+
+         const waitExecutor = (label) => {
+             $('#spinner').removeClass('hide');
+             const checkStatus = (label) => {
+                 $.ajax({
+                     url: '/api/execute/' + label,
+                     type: 'GET',
+                     xhrFields: { withCredentials: true },
+                     timeout: 3000,
+                 }).done((data) => {
+                     /* Successfully called API */
+                     if (data.status === 'ok') {
+                         $('#output').empty();
+                         $('#output').removeClass('hide');
+                         if (data.response.result == 'ok') {
+                             /* Execution success */
+                             $('#output').append($('<span/>', {text: "[Output]"}))
+                                         .append($('<br/>'));
+                             $.each(from_hex(data.response.output).split('\n'), (i, l) => {
+                                 $('#output').append($('<span/>', {text: l}))
+                                             .append($('<br/>'));
+                             });
+                         } else {
+                             /* Execution error */
+                             $('#output').append($('<span/>', {text: "[Runtime Error]"}))
+                                         .append($('<br/>'));
+                             $.each(data.response.error.split('\n'), (i, l) => {
+                                 $('#output').append($('<span/>', {text: l}))
+                                             .append($('<br/>'));
+                             });
+                         }
+                     } else if (data.status == 'wait') {
+                         setTimeout(checkStatus, 1000, label)
+                         return;
+                     } else {
+                         showError(data.error);
+                     }
+                     $('#spinner').addClass('hide');
+                     $('#execute').removeAttr('disabled');
+                 }).fail((resp) => {
+                     /* Something went wrong with API call */
+                     if (resp.responseJSON)
+                         showError(resp.responseJSON.error);
+                     else
+                         showError(`${resp.status} ${resp.statusText}`);
+                     $('#spinner').addClass('hide');
+                     $('#execute').removeAttr('disabled');
+                 });
+             };
+
+             setTimeout(checkStatus, 1000, label)
+         };
+         
+         $(document).ready(function(){
+             $('select').formSelect();
+             $('select').change(function() {
+                 const id = $(this).val();
+                 window.location.href = `/playground/${id}`;
+             });
+         });
+        </script>
+    </body>
+</html>

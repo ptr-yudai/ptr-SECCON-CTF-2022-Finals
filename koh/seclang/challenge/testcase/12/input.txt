@@ -1,0 +1,11 @@
+10
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}
+${randint(2, 99)}

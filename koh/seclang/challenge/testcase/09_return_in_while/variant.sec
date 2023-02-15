@@ -1,0 +1,25 @@
+
+func yoyoyoyoo(arg) {
+cnt = 0;
+while true {
+if arg == 0 {
+    return cnt;
+}
+if arg % 2 == 1 {
+    cnt = cnt + 1;
+}
+arg = arg / ${2**randint(1,4)};
+}
+}
+
+func pwn () {
+  v = [${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}];
+  f = [pwn, pwn, pwn];
+  g = f[v[0] as uint % 3 as uint];
+}
+
+func main() {
+    j = [[scan()][0]];
+    print(yoyoyoyoo(j[0]));
+    pwn();
+}

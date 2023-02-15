@@ -1,0 +1,124 @@
+{% set NUM_TESTCASE = 5 %}
+{% set TESTCASE_SCORE = 2 %}
+{% set EXPLOIT_SCORE = 20 %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mission and Rules</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <main class="container">
+            <section>
+                <h4>What is this challenge?</h4>
+                <p>
+                    We present a brand-new programming language called <code>SecLang</code>.
+                    SecLang supports both interpreter and compiler.<br>
+                    Your task is to fix the compiler in order to ensure its "soundness."<br>
+                    Development of the compiler has already been done and it works correctly for all of our testcases. However, as you can see from the language documentation, SecLang has some undefined behaviour. Our interpreter throws an exception when undefined behaviour occurs, but our compiler doesn't produce such machine code. It means that programs compiled with the current version of SecLang with some bugs are at risk.<br>
+                    Please fix the compiler so that any software developed by SecLang works in a "secure" way.
+                </p>
+            </section>
+            <section>
+                <h4>Scoring System</h4>
+                <p>
+                    There are 2 ways to earn your points: testcase and exploit.
+                </p>
+                <h5>Running Testcases</h5>
+                <p>
+                    <b>Every 5 minutes (1 round)</b> we will run {{ NUM_TESTCASE }} random testcases against your team's compiler.<br>
+                    Your team will receive a score based on how many testcases are passed. <b>Each testcase is worth {{ TESTCASE_SCORE }} points, so a maximum of {{ NUM_TESTCASE * TESTCASE_SCORE }} points will be awarded per round.</b><br>
+                    None of the testcases cause undefined behaviour, which means they don't throw any exceptions when executed on the interpreter. The testcases used in each round are disclosed after the round. You can check the testcase in your results table of the testcase page.
+                </p>
+                <img src="/static/img/fig1.png" alt="Architecture of Testcase Execution"><br>
+                <p>
+                    * The input file is read-only and the network is down in each container.<br>
+                    * Each container will time out in 10 seconds. All testcases complete execution computationally fast enough.<br>
+                    * The executor runs each testcase twice: <b>once with seccomp, and once without</b>. The seccomp filter only allows <code>read(stdin)</code>, <code>write(stdout)</code>, and <code>exit</code> system calls. <b>Both executions must produce the same result. This double check prevents cheating</b> such as calling an external language or calculator, sandboxing the compiled program, and removing the flag.
+                </p>
+                <h5>Exploiting Compilers</h5>
+                <p>
+                    For each team's compiler, we provide a "playground", a web service that executes your SecLang code with the team's compiler. So you can run any SecLang program with other teams' compilers.
+                    You don't have access to the source code of the other team's compiler, but you can get the machine code it produces by compiling your SecLang code.<br>
+                    If you find a "bug" in the other team's compiler and somehow steal the flag in <code>/flag.txt</code>, you will receive an <b>additional {{ EXPLOIT_SCORE }} points</b>. Note that <b>the flag is updated every 1 hour</b>. This means that you can only get this score for the same team's compiler once in 1 hour.<br>
+                    Also, if the team's flag is stolen and sent to the dashboard, <b>the compromised team will lose the testcase score for that round</b>.
+                    For example, if 3 teams steal the team's flag in the same round, the compromised team will lose the testcase score for that round and the next 2 rounds.<br><br>
+                    So, theoretically, you can get a maximum of {{ 60 // 5 * NUM_TESTCASE * TESTCASE_SCORE + EXPLOIT_SCORE * (11-1) }} points (60/5*{{ NUM_TESTCASE * TESTCASE_SCORE }} + {{ EXPLOIT_SCORE }}*(#teams-1)) every 1 hour.
+                </p>
+                <img src="/static/img/fig2.png" alt="Architecture of Exploit"><br>
+                <p>
+                    * The input file is read-only and the network is down in each container.<br>
+                    * The flag is created read-only in the container each time a program is executed.
+                </p>
+                <h5>Updating Your Compiler</h5>
+                <p>
+                    While exploiting other teams' compilers, you also need to fix your team's compiler so that other teams cannot steal your flag.<br>
+                    You have full control of the compiler container enclosed by the dotted line in the image above.
+                    <b>You can upload any files to the container</b> but you must upload <code>init.sh</code> and <code>entry.sh</code>, which write initialization and entry point respectively. See the distributed Dockerfile for more details.
+                    So you can modify the existing compiler, write a completely new one from scratch, or even use some external tools.<br>
+                    However, your compiler (docker container) must <b>receive a SecLang file and produce the machine code in <a href="https://www.nasm.us/" target="_blank">NASM</a> format</b>.<br>
+                    Be careful that your team can update your compiler (upload the docker container) <b>only 1 time in 30 minutes</b>. Once you upload a compiler, you cannot update it in next 30 minutes.
+                </p>
+                <p>
+                    * You have to upload every file inside <code>compiler/container</code> directory in ZIP format.<br>
+                    * If your build fails, the timestamp will not be updated, so you can try uploading again. However, <b>the server will keep the broken container</b> and the testcase will also fail if you leave it.<br>
+                    * The server does not accept compilers that cannot compile the "Hello, World" program, to prevent erroneous uploads.<br>
+                    * The compiler must not print anything to stderr or the compile will fail.<br>
+                    * The timeout for build is 3 minute.
+                </p>
+            </section>
+            <section>
+                <h4>Distributed files</h4>
+                The distributed archive includes the following directories:
+                <ul>
+                    <li>
+                        - <code>compiler</code><br>
+                        SecLang compiler. The compiler must receive a SecLang code and output machine codes in NASM format.
+                    </li>
+                    <li>
+                        - <code>assembler</code><br>
+                        Assembler container. Use it when you want to check the version of NASM, test if your machine codes assemble correctly, and so on.
+                    </li>
+                    <li>
+                        - <code>sample</code><br>
+                        Example programs written in SecLang. It's recommanded to check them out rather than read the documentation :)
+                    </li>
+                </ul>
+                and the following files:
+                <ul>
+                    <li>
+                        - <code>01_build_docker.sh</code><br>
+                        This script builds the compiler and asssembler containers used by <code>02_compiler.sh</code>.
+                    </li>
+                    <li>
+                        - <code>02_compiler.sh</code><br>
+                        This script compiles a SecLang program to ELF binary with your compiler container.
+                    </li>
+                    <li>
+                        - <code>03_interpreter.py</code><br>
+                        This script executes a SecLang program with the remote interpreter.
+                        You should use it to check the expected behavior of the language.
+                    </li>
+                    <li>
+                        - <code>seclang-doc.pdf</code><br>
+                        Language documentation of SecLang.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h4>What you MUST NOT do</h4>
+                <p>We may deduct points or disqualify your team if we notice any of the following violation:</p>
+                <ul>
+                    <li>- Attempt to attack this dashboard</li>
+                    <li>- Attempt to overwrite other teams' compiler by any means</li>
+                    <li>- Attempt to escape from any of the 3 containers (compiler, assembler, executor)</li>
+                    <li>- Attempt to send large requests to this dashboard at once</li>
+                    <li>- Overloading CPU or consuming a large amount of disk space</li>
+                </ul>
+                <p>Kindly tell the admin if you find any suspicious behavior or bugs :)</p>
+            </section>
+        </main>
+    </body>
+</html>

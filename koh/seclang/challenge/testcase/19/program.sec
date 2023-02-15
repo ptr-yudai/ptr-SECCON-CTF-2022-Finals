@@ -1,0 +1,42 @@
+func f(ls, x, y, z, w) {
+    a = 0;
+    while x <= y {
+        a = ls[x];
+        ls[x] = ls[z];
+        ls[z] =  a;
+
+        x = x + 1;
+        z = z + 1;
+    }
+
+}
+
+
+func main() {
+    a = scan() - 1;
+    b = scan() - 1;
+    c = scan() - 1;
+    d = scan() - 1;
+
+    xs = [0; 100];
+    i = 0;
+    j = 0;
+    x = 0;
+    while true {
+        x = scan();
+        if x == -1 {
+            f(xs, a, b, c, d);
+
+            while i < j {
+                print(xs[i]);
+                print("\n");
+                i = i + 1;
+            }
+            return;
+        }
+
+        xs[j] = x;
+        j = j + 1;
+    }
+
+}

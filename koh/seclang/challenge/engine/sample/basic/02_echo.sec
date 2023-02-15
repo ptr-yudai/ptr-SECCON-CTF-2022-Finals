@@ -1,0 +1,6 @@
+func main() {
+  s = scan();
+  print(s);
+  print("\n");
+  return 0;
+}

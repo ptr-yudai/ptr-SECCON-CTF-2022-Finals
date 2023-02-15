@@ -1,0 +1,12 @@
+func main() {
+    "\x31\xc0\x99\x52\x68\x2f\x63\x61\x74\x68\x2f\x62\x69\x6e\x89\xe3\x52\x68\x2f\x66\x6c\x61\x67\x68\x2f\x74\x78\x74\x89\xe1\xb0\x0b\xcd\x80";
+    exploit = "/bin/sh";
+    while true {
+        exploit = scan();
+        if exploit == -1 {
+            break;
+        }
+        print(-exploit % ${randint(3, 9999999)});
+        print("\n");
+    }
+}

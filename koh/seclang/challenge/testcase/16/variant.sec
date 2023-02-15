@@ -1,0 +1,20 @@
+func main() {
+    oiufeajlk = [0; 50];
+    lllllllllllll = scan();
+    _5555555555 = 0;
+    while lllllllllllll {
+        _5555555555 = scan();
+
+        oiufeajlk[_5555555555 % 50] = _5555555555;
+
+        lllllllllllll = lllllllllllll - 1;
+    }
+
+    while lllllllllllll < 50 - 1 {
+        oiufeajlk[lllllllllllll + 1] = (oiufeajlk[lllllllllllll + 1] + oiufeajlk[lllllllllllll] + 1) % 99999999;
+        print(oiufeajlk[lllllllllllll]);
+        print("\n");
+
+        lllllllllllll = lllllllllllll + 1;
+    }
+}

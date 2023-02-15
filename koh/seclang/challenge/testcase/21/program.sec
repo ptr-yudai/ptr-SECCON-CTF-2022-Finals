@@ -1,0 +1,17 @@
+func r(mem, i, size) {
+    if i == size {
+        return;
+    }
+    mem[i] = mem[i-1];
+    r(mem, i + 1, size);
+}
+
+func main() {
+    xs = [0 as byte; 256];
+    l = scan();
+    xs[0] = scan() as byte;
+
+    r(xs, 1, l);
+    print(xs);
+
+}

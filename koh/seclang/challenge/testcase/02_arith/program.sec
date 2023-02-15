@@ -1,0 +1,16 @@
+func println(v) {
+	print(v);
+	print(0x0A as byte);
+}
+
+func main() {
+	x = scan();
+	println(x + ${randint(-0x8000000000000000, 0x7fffffffffffffff)});
+	println(x - ${randint(-0x8000000000000000, 0x7fffffffffffffff)});
+	println(x * ${randint(-0x8000000000000000, 0x7fffffffffffffff)});
+	println(x % ${randint(1, 0x7fffffffffffffff)});
+	println(x % ${randint(-0x8000000000000000, -1)});
+	println(x * x);
+	println(x / x);
+	return 0;
+}

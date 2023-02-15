@@ -1,0 +1,37 @@
+{
+    "start": "2023/02/09 12:00",
+    "langs": [
+        {"name": "C", "code": "main.c", "prog": "mission-1",
+         "smal": false, "output": "output.bin", "ans": "mission-1",
+         "compiler": "compiler_c.zip", "image": "compiler_c"},
+
+        {"name": "C++", "code": "main.cpp", "prog": "mission-2",
+         "smal": false, "output": "output.bin", "ans": "mission-2",
+         "compiler": "compiler_cpp.zip", "image": "compiler_cpp"},
+
+        {"name": "Rust", "code": "main.rs", "prog": "mission-3",
+         "smal": true, "output": "output.bin", "ans": "mission-3.text",
+         "compiler": "compiler_rust.zip", "image": "compiler_rust"},
+
+        {"name": "Go", "code": "main.go", "prog": "mission-4",
+         "smal": true, "output": "output.bin", "ans": "mission-4.text",
+         "compiler": "compiler_go.zip", "image": "compiler_go"},
+
+        {"name": "Python", "code": "main.py", "prog": "mission-5.pyc",
+         "ans": "mission-5.pyc",
+         "smal": false, "output": "__pycache__/main.cpython-312.pyc",
+         "compiler": "compiler_python.zip", "image": "compiler_python"},
+
+        {"name": "D", "code": "main.d", "prog": "mission-6",
+         "smal": true, "output": "output.bin", "ans": "mission-6.text",
+         "compiler": "compiler_d.zip", "image": "compiler_d"},
+
+        {"name": "WebAssembly", "code": "wmain.c", "prog": "mission-7.zip",
+         "smal": false, "output": "mission-7.wasm", "ans": "mission-7.wasm",
+         "compiler": "compiler_wasm.zip", "image": "compiler_wasm"}
+    ],
+    "score": {
+        "max": 20,
+        "stride": 2
+    }
+}

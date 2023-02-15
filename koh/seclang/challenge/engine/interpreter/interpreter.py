@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+import sys
+
+HOST = "localhost" # Change here to remote IP
+PORT = 12345
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print(f"Usage: {sys.argv[0]} program.sec")
+        sys.exit(1)
+
+    with open(sys.argv[1], "r") as f:
+        program = f.read()
+
+    from pwn import *  # pip install pwntools
+    sock = remote(HOST, PORT)
+    sock.sendline(program.encode())
+    sock.sendline(b"__SECLANG_EOF__")
+    sock.interactive()

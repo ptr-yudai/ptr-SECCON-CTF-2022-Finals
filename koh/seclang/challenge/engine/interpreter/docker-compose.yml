@@ -1,0 +1,7 @@
+version: '3'
+services:
+  interpreter:
+    build: ./
+    ports:
+      - 12345:9999
+    restart: on-failure:10

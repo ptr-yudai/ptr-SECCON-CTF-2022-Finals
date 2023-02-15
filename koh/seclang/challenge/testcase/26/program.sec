@@ -1,0 +1,18 @@
+func main() {
+    xs = [0; 81];
+    i = 0;
+    j = 0;
+    while i < 9 {
+        j = 0;
+        while j < 9 {
+            xs[i*9 + j] = (i+1)*(j+1);
+            j = j + 1;
+        }
+        i = i + 1;
+    }
+
+    i = scan();
+    j = scan();
+    print(xs[(i-1)*9 + (j-1)]);
+
+}

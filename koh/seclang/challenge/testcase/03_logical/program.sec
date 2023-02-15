@@ -1,0 +1,21 @@
+func println(v) {
+	print(v);
+	print(0x0A as byte);
+}
+
+func main() {
+  a = scan() as uint;
+  b = scan() as uint;
+  c = scan() as uint;
+  v = ${randint(0, (1<<64)-1)} as uint;
+  println(a | v);
+  println(a & v);
+  println(a ^ v);
+  println(a && v);
+  println(a || v);
+  println(a ^ b);
+  println(a ^ b ^ c);
+  println(!a);
+  println(!b);
+  println(!c);
+}

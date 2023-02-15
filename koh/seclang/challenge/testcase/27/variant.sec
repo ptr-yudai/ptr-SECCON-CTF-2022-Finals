@@ -1,0 +1,13 @@
+func main() {
+    d = scan();
+    c = scan();
+    b = scan();
+    a = scan();
+
+    if d*c > b*a {
+        [print(d+c)];
+    } else {
+        [print(b+a)];
+    }
+    print("\n");
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SLHub Dashboard</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper blue darken-2">
+                <span style="margin-left: 0.5em;" class="brand-logo">Dashboard</span>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="/playground/{{ session['teamid'] }}">Playground</a></li>
+                    <li><a href="/testcase/{{ session['teamid'] }}">Testcase</a></li>
+                    <li><a href="/rule" target="_blank">Rules</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="container">
+            <section>
+                <h4>Top News</h4>
+                <div id="news" class="card-panel" style="max-height: 10em; overflow: scroll;">
+                </div>
+            </section>
+            <section>
+                <h4>Your Compiler</h4>
+                <a class="waves-effect waves-light btn" href="/playground/{{ session['teamid'] }}">Playground</a>
+                <a class="waves-effect waves-light btn" href="/testcase/{{ session['teamid'] }}">Testcases</a>
+                <table id="myboard" class="striped">
+                    <thead><tr><th></th></tr></thead>
+                    <tbody>
+                    </tbody>
+                </table><br>
+                <div class="row">
+                    <div class="file-field input-field col">
+                        <div class="btn">
+                            <span>Select</span>
+                            <input type="file" id="container">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="file-field input-field col">
+                        <button class="btn" id="upload">Update Container</button>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <div id="container-status" class="card-panel grey darken-4 grey-text text-lighten-5">
+                        Checking container status...
+                    </div>
+                </div>
+                <p class="red-text">
+                    * Run "<b><code>zip container.zip . -r</code></b>" in the <code>compiler/container</code> directory and upload <code>container.zip</code>.<br>
+                    * Make sure that <b>the sample programs work correctly</b> before uploading your container.<br>
+                    * ZIP files cannot retain file permissions. Don't forget to set permissions explicitly in <code>init.sh</code>, especially <code>+x</code>.<br>
+                    * If you upload a broken container that cannot run the "Hello, World" program correctly, <b>the server will keep the broken container</b>, but you can upload a new one.<br>
+                    * The timeout for building the container is 3 minutes. If you successfully update the container, you cannot update it again for 30 minutes.<br>
+                </p>
+            </section>
+            <section>
+                <h4>Teams</h4>
+                <ul class="collapsible" id="dashboard">
+                    <li id="dashboard-template-row" class="hide">
+                        <div class="collapsible-header"></div>
+                        <div class="collapsible-body">
+                            <a class="waves-effect waves-light btn" href="#">Playground</a>
+                            <a class="waves-effect waves-light btn" href="#">Testcases</a>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h4>Report</h4>
+                <p>Steal other teams' flags and submit them here:</p>
+                <div class="row">
+                    <div class="input-field col s5">
+                        <input id="flag" placeholder="SECCON{.+}" type="text" class="validate">
+                        <label for="flag">FLAG</label>
+                    </div>
+                    <div class="input-field col s1">
+                        <button id="submit" class="btn">Submit</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script>
+         const teamID = {{ session['teamid'] }};
+
+         const showMessage = (message) => {
+             M.toast({html: `Message: ${message}`,
+                      displayLength: 10000});
+         };
+         const showError = (message) => {
+             M.toast({html: `Error: ${message}`,
+                      displayLength: 5000});
+         };
+
+         $('#upload').on('click', () => {
+             let fd = new FormData();
+             fd.append('container', $('#container').prop('files')[0]);
+             $.ajax({
+                 url: '/api/upload',
+                 type: 'POST',
+                 data: fd,
+                 processData: false,
+                 contentType: false,
+                 cache: false,
+                 xhrFields: { withCredentials: true },
+             }).done((data) => {
+                 console.log(data);
+                 if (data.status === 'ok') {
+                     showMessage("Successfully uploaded container. It may take few minutes until your container is updated.");
+                     $('#container-status').text("Updating...");
+                 } else {
+                     showError(data.error);
+                 }
+             }).fail((resp) => {
+                 /* Something went wrong with API call */
+                 showError(resp.statusText);
+             });
+         });
+
+         const renderTeams = teams => {
+             let rank = 1;
+             let pwned;
+             teams.forEach(team => {
+                 if (team.id === teamID) {
+                     pwned = team.pwned;
+                 }
+             });
+             console.log(pwned);
+             teams.forEach(team => {
+                 let row = $('#dashboard-template-row').clone();
+                 let header = row.children().eq(0);
+                 let body = row.children().eq(1);
+
+                 const prefix = rank==1?'st':rank==2?'nd':rank==3?'rd':'th';
+                 let s = `${rank}${prefix}.\u2003${team.name} (score: ${team.score})`;
+                 if (pwned.includes(team.id)) {
+                     s += ' &#128293;';
+                 }
+                 header.html(s);
+
+                 if (team.id == teamID) {
+                     /* Remove from attack board */
+                     header.addClass('grey lighten-1');
+                     body.text("This is your team.");
+                 } else {
+                     const a = body.find('a');
+                     a.eq(0).attr('href', `/playground/${team.id}`);
+                     a.eq(1).attr('href', `/testcase/${team.id}`);
+                 }
+
+                 row.removeClass('hide');
+                 row.appendTo('#dashboard');
+                 rank++;
+             });
+         };
+
+         $('#submit').on('click', function() {
+             let flag = $('#flag').val();
+             $.ajax({
+                 url: '/api/submit',
+                 type: 'POST',
+                 contentType: 'application/json',
+                 dataType: 'json',
+                 data: JSON.stringify({ flag }),
+                 xhrFields: { withCredentials: true },
+                 timeout: 3000,
+             }).done((data) => {
+                 if (data.status === 'ok') {
+                     showMessage(data.message);
+                     $('#flag').val('');
+                 } else {
+                     showError(data.error);
+                 }
+             }).fail((resp) => {
+                 showError(`${resp.status} ${resp.statusText}`);
+             });
+         });
+
+         $(document).ready(function() {
+             $('.collapsible').collapsible();
+             $('.tabs').tabs();
+
+             /* Get ranking */
+             $.ajax({
+                 url: '/api/teams',
+                 type: 'GET',
+                 timeout: 3000,
+             }).done((data) => {
+                 /* Successfully called API */
+                 if (data.status === 'ok') {
+                     renderTeams(data.teams);
+                 } else {
+                     showError(data.error);
+                 }
+             }).fail((resp) => {
+                 showError(`${resp.status} ${resp.statusText}`);
+             });
+
+             /* Get container status */
+             $.ajax({
+                 url: `/api/upload/${teamID}`,
+                 type: 'GET',
+                 timeout: 3000,
+             }).done((data) => {
+                 if (data.status === 'ok') {
+                     $('#container-status').empty();
+                     if (data.response.result === 'ok') {
+                         $.each(data.response.message.split('\n'), (i, l) => {
+                             $('#container-status').append($('<span/>', {text: l}))
+                                                   .append($('<br/>'));
+                         });
+                     } else {
+                         data.response.error += '\nSanity check failed. The following program didn\'t work correctly:';
+                         data.response.error += '\nfunc main() { print("Hello, World\\n"); }';
+                         data.response.error += '\nYou can update the container again.'
+                         $.each(data.response.error.split('\n'), (i, l) => {
+                             $('#container-status').append($('<span/>', {text: l}))
+                                                   .append($('<br/>'));
+                         });
+                     }
+                 } else {
+                     showError(data.error);
+                 }
+             }).fail((resp) => {
+                 showError(`${resp.status} ${resp.statusText}`);
+             });
+
+             /* Get log */
+             $.ajax({
+                 url: '/api/logs',
+                 type: 'GET',
+                 timeout: 3000,
+             }).done((data) => {
+                 $.each(data.logs, (_, log) => {
+                     $('#news').append($('<span/>', {text: log[0]}))
+                               .append($('<br/>'));
+                     });
+             }).fail((resp) => {
+                 showError(`${resp.status} ${resp.statusText}`);
+             });
+         });
+        </script>
+    </body>
+</html>

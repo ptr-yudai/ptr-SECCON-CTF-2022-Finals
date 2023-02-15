@@ -1,0 +1,5 @@
+func main() {
+  print((0x77 << 8 ^ 0x77 & 0xf0f0 | 0x0202) >> 1 == 0x3939);
+  print("\n");
+  return 0;
+}

@@ -1,0 +1,24 @@
+func f(mem, s, n, t) {
+    if n == 0 {
+        return 0;
+    }
+    mem[s % 256] = mem[(s + 333) % 256] + mem[(s - 1) % 256];
+    return (mem[s % 256] + f(mem, 2*s + 1, n - 1, "/flag.txt") + f(mem, s + 1, n - 1, "__scanf__")) % 14443;
+}
+
+func main() {
+    s = [scan()];
+    n = scan() % 10;
+    mem = [0; 0x100];
+    len = 256;
+    i = 0;
+    while i < 256 {
+        mem[i] = i;
+        i = i + 1;
+    }
+    x = [29400045130965551, 0x0068732f6e69622f, 0x010100006873];
+
+    print(f(mem, s[0], n, 0x12345));
+    print("\n");
+
+}

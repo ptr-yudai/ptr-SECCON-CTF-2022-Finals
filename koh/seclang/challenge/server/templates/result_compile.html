@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Compile Result - SLHub</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <main class="container">
+            <h2>Compile Result</h2>
+            <!-- Spinner -->
+            <div id="spinner" class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code -->
+            <div class="row hide" id="code-form">
+                <div class="input-field col s12">
+                    <textarea id="code" class="materialize-textarea" readonly></textarea>
+                    <label for="code">SecLang Code</label>
+                </div>
+            </div>
+
+            <!-- Output -->
+            <div class="row hide" id="output-form">
+                <div id="output" class="card-panel grey darken-4 grey-text text-lighten-5">
+                </div>
+            </div>
+
+            <!-- Assembly -->
+            <div class="row hide" id="assemble-form">
+                <div class="input-field col s12">
+                    <textarea id="asm" class="materialize-textarea" readonly></textarea>
+                    <label for="asm">Assembly Code</label>
+                </div>
+            </div>
+        </main>
+
+        <script>
+         const showError = (message) => {
+             M.toast({html: `Error: ${message}`,
+                      displayLength: 5000});
+         };
+
+         $(document).ready(function(){
+             $.ajax({
+                 url: '/api/compile/{{ ticket }}',
+                 type: 'GET',
+                 xhrFields: { withCredentials: true },
+                 timeout: 3000,
+             }).done((data) => {
+                 /* Successfully called API */
+                 if (data.status === 'ok') {
+                     if (data.response.asm) {
+                         $('#assemble-form').removeClass('hide');
+                         $('#asm').val(data.response.asm);
+                         M.textareaAutoResize($('#asm'));
+                     }
+
+                     if (data.response.source) {
+                         $('#code-form').removeClass('hide');
+                         $('#code').val(data.response.source);
+                         M.textareaAutoResize($('#code'));
+                     }
+
+                     if (data.response.result == 'ok') {
+                         /* Compile success */
+                         $('#output').append($('<span/>', {text: "Compile OK"}));
+                     } else {
+                         /* Compile error */
+                         $('#execute').addClass('hide');
+                         $('#output').empty();
+                         $('#output').removeClass('hide');
+                         $('#output').append($('<span/>', {text: "[Compile Error]"}))
+                                     .append($('<br/>'));
+                         $.each(data.response.error.split('\n'), (i, l) => {
+                             $('#output').append($('<span/>', {text: l}))
+                                         .append($('<br/>'));
+                         });
+                     }
+                     $('#output-form').removeClass('hide');
+                     M.updateTextFields();
+                 } else if (data.status === 'wait') {
+                     showError("Ticket not found");
+                 } else {
+                     showError(data.error);
+                 }
+                 $('#spinner').addClass('hide');
+             }).fail((resp) => {
+                 /* Something went wrong with API call */
+                 if (resp.responseJSON)
+                     showError(resp.responseJSON.error);
+                 else
+                     showError(`${resp.status} ${resp.statusText}`);
+                 $('#spinner').addClass('hide');
+             });
+         });
+        </script>
+    </body>
+</html>

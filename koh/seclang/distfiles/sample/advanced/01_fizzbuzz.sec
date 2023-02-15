@@ -1,0 +1,28 @@
+func main() {
+  a = false;
+  b = false;
+  print("n = ");
+  n = scan();
+
+  i = 1;
+  while i <= n {
+    a = i % 3 == 0;
+    b = i % 5 == 0;
+    if (a == false && b == false) {
+      print(i);
+    } else {
+      if (a) {
+        print("Fizz");
+      }
+      if (b) {
+        print("Buzz");
+      }
+    }
+    i = i + 1;
+    if i <= n {
+      print(", ");
+    }
+  }
+
+  print(10 as byte);
+}

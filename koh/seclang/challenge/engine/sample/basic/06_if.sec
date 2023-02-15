@@ -1,0 +1,23 @@
+func assert(bool) {
+  if bool {
+    print("OK\n");
+  } else {
+    print("NG\n");
+  }
+}
+
+func main() {
+  print("START\n");
+  assert(true);
+  assert(-1 < 0);
+  assert(1 <= 1);
+  assert(9999 > 9998);
+  assert(1 >= 1);
+  assert((9999 > 9999) == false);
+  a = false;
+  if true {
+    a = true;
+  }
+  assert(a);
+  print("END\n");
+}

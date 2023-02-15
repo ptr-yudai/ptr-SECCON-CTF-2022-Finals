@@ -1,0 +1,50 @@
+func init(tab) {
+  upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  i=0;
+  lower = "abcdefghijklmnopqrstuvwxyz";
+  while i<256 {
+    tab[i]=i as byte;
+    i=i+1;
+  }
+  i=0;
+  while i<13 {
+    tab[upper[i]as uint]= upper[i+13];
+    tab[upper[i+    13] as uint] =upper[i];
+    tab[lower[i]as uint]= lower[i+13];
+    tab[lower[i   +13] as uint] =lower[i];
+    i= i +1;
+  }
+}
+
+
+func main() {
+     arr = [${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}];
+
+str = [0 as byte; 0x100];
+len = scan();
+if len <= 0 || len > 0x100 {
+print("invalid length!\n");
+return 1;}
+  i = 0;
+  while i < len {
+    str[i] = scan()as byte;
+    i = i + 1;
+  }
+print("input: ");
+i = 0; while i < len { print(str[i]); i = i + 1; }
+print("\n");
+tab = [0 as byte; 0x100];
+init(tab);
+  win(str,len,tab);
+  print("output: ");
+  i = 0; while i < len { print(str[i]); i = i + 1; }
+  print("\n");
+  return 0;
+}
+
+func win(a,b,c)
+{
+  i = 0; while i < b
+  {a[i] = c[a[i]];
+    i = i + 1;}
+}

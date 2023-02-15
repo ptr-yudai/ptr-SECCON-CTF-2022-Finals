@@ -1,0 +1,20 @@
+func main() {
+    kuku = [0; 81];
+    i = [0, 0];
+    j = [0];
+    Q = 9;
+    while i[1] < Q {
+        j = [0];
+        while j[0] < Q {
+            kuku[i[1]*Q + j[0]] = (i[1]+1)*(j[0]+1);
+            j[0] = j[0] + 1;
+        }
+        i = [0, i[1] + 1];
+    }
+
+    juju = [${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)},${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)},${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}];
+    i = scan();
+    j = scan();
+    print(kuku[(i-1)*Q + (j-1)]);
+
+}

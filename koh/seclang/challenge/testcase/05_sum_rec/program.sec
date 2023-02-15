@@ -1,0 +1,13 @@
+func add(i, cur) {
+    if i == 0 {
+        return cur;
+    }
+    return add(i-1, cur + scan());
+}
+
+
+func main() {
+	len = scan();
+    print(add(len, 0));
+    return 0;
+}

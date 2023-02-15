@@ -1,0 +1,27 @@
+
+
+func exploit(b) {
+    a = 0;
+    while true  {
+        a = b << 10;
+        b = a % ${randint(2, 333333)};
+        while true {
+            if a == 0 {
+                break;
+            }
+            if a == 1 {
+                return b;
+            }
+            a = a / 2;
+            b = b + 1;
+        }
+    }
+
+}
+func main() {
+    a = scan();
+    r = [exploit(a), exploit(a)];
+    print(r[r[0] / r[1]]);
+    print("SECCON NOCCES\n");
+
+}

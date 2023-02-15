@@ -1,0 +1,11 @@
+func main() {
+    x = "hello";
+    while true {
+        x = scan();
+        if x == -1 {
+            break;
+        }
+        print(-x % 1123);
+        print("\n");
+    }
+}

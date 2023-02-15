@@ -1,0 +1,20 @@
+func main() {
+    xs = [0; 50];
+    len = scan();
+    x = 0;
+    while len {
+        x = scan();
+
+        xs[x % 50] = x;
+
+        len = len - 1;
+    }
+
+    while len < 50 - 1 {
+        xs[len + 1] = (xs[len + 1] + xs[len] + 1) % 99999999;
+        print(xs[len]);
+        print("\n");
+
+        len = len + 1;
+    }
+}

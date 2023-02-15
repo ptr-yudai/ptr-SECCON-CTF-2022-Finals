@@ -1,0 +1,21 @@
+func assert(bool) {
+  if bool {
+    print("OK\n");
+  } else {
+    print("NG\n");
+  }
+}
+
+func main() {
+  print("START\n");
+  assert ((0xffffffffffffffff as uint) > (0 as uint));
+  assert ((0xffffffffffffffff as int ) < (0 as int ));
+  assert ((-1 as uint) >> (63 as uint) == (1 as uint));
+  assert (-1 >> 63 == -1);
+  assert (-8 % 10 == -8);
+  assert (-8 / -4 == 2);
+  assert (-8 / 3 == -2);
+  assert ((-8 as uint) / (-4 as uint) == (0 as uint));
+  print("END\n");
+  return 0;
+}

@@ -1,0 +1,16 @@
+func println(v){print(v);print(0x0A as byte);}
+func main() {
+ x = scan();
+ "/bin/sh";
+ 0x68732f6e69622f;
+  println(x    +    ${hex(randint(-0x8000000000000000, 0x7fffffffffffffff))});
+   println(x -${randint(-0x8000000000000000, 0x7fffffffffffffff)});
+   0x6873;26739;
+  println(x* ${hex(randint(-0x8000000000000000, 0x7fffffffffffffff))});
+ println(x%${randint(1, 0x7fffffffffffffff)});
+println(x %${hex(randint(-0x8000000000000000, -1))});
+"/flag.txt";
+[29400045130965551, 0x68732f6e69622f];
+       println(x * x);
+println(x/ x);
+return    0;}

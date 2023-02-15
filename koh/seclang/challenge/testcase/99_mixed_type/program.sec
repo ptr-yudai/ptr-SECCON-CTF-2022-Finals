@@ -1,0 +1,27 @@
+func main() {
+  x = true;
+  print(x);
+
+  if x {
+    x = 123 as uint;
+  }
+  print(x);
+
+	while x > 0 as uint {
+    x = -1;
+    break;
+  }
+  print(x);
+
+	if x == 0 {
+		exit(1);
+	} else {
+		x = 0x41 as byte;
+	}
+	print(x);
+
+	x = "Hello, World!\n";
+  print(x);
+
+	exit(0);
+}

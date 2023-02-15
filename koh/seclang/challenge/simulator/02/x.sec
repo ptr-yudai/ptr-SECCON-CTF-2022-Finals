@@ -1,0 +1,7 @@
+func main() {
+  n = scan();
+  print("2n = ");
+  print(2 * n);
+  print(0x0A as byte);
+  return 0;
+}

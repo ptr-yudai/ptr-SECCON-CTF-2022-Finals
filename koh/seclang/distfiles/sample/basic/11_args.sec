@@ -1,0 +1,36 @@
+func f(x) {
+  y = x;
+  return y;
+}
+
+func I(x, y, z) {
+  return x;
+}
+func J(x, y, z) {
+  return y;
+}
+func K(x, y, z) {
+  return z;
+}
+
+func main() {
+  fs = [I, J, K];
+  print("0=I / 1=J / 2=K: ");
+  n = scan();
+  if n < 0 || n > 2 {
+    print("Invalid input\n");
+    exit(1);
+  }
+
+  print(
+    (fs[n])(
+      I(J(314, f(159), 265),
+        K(I(J(358, 979, 323), 846, 264), J(338, 327, 950), 288),
+        I(419, 716, f(939))),
+      J(K(937, 510, 582), I(111, 222, 333), J(100, f(200), 300)),
+      K(987, 654, 321)
+    )
+  );
+
+  print("\n");
+}

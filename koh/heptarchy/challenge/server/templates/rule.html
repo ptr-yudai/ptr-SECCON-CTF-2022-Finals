@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rule - Heptarchy</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.21/dist/css/uikit.min.css" />
+    </head>
+    <body>
+        <main class="uk-margin-top uk-margin-bottom uk-container">
+            <section>
+                <h2>What is this challenge?</h2>
+                <p>
+                    How quickly and accurately can you reverse engineer programs?<br>
+                    There are some useful tools for decompiling a binary, such as IDA and Ghidra.
+                    However, none of them can recover the original source code 100%.<br>
+                    It is always human skills<small>*</small> that can decompile a semantically meaningful code.<br>
+                    Show your reverse engineering skills.
+                </p>
+                <p><small>* Sometimes ChatGPT in these days :)</small></p>
+            </section>
+            <section>
+                <h2>The Heptarchy</h2>
+                The Heptarchy is the seven petty programs that you'll conquer.<br>
+                So, you need to reverse engineer the following programs as quick and accurate as possible:
+                <ul>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a></li>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></li>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/Rust_(programming_language)">Rust</a></li>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/Go_(programming_language)">Go</a></li>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/D_(programming_language)">D</a></li>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a></li>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/WebAssembly">WebAssembly</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Scoring System</h2>
+                <p>
+                    The following figure shows the overview of this challenge:
+                </p>
+                <img src="/static/img/fig.png" alt="Scoring System">
+                <p>
+                    For each hour, you can download a program binary named <code>mission-X</code> (X is from 1 to 7).
+                    Each binary is compiled using a common language. (See "The Heptarchy" for the list of languages.)
+                    Your task is to <b>reverse engineer the binary and write the source code in that language</b>.
+                    In total, <b>you will have to analyze 7 different programs</b> compiled from 7 different source codes.
+                    <br>
+                    Once you have decompiled the code, you must upload it to the server from this dashboard.
+                    <br>
+                    <b>The server tests the uploaded code every 5 minutes (1 round)</b>.
+                    Your code is compiled into a binary, and the server calculates how similar the produced binary is to the distributed mission binary.
+                    The smaller the difference, the higher your rank.
+                    <b>The team with the smallest difference gets 20 points</b>.
+                    The team with the second highest rank gets 18 points, the third 16 points, and so on.
+                    <br>
+                    If multiple teams upload code with the same diff score, they will receive the same score.
+                    For example, if two teams record a diff of 0 (the highest score), they will both receive 20 points.
+                    <br>
+                    In any of the following cases, the team will not receive any points for the round:
+                    <ul>
+                        <li>The team does not upload any code for the language. (You don't have to upload the same code every round.)</li>
+                        <li>The uploaded code does not compile within 10 seconds.</li>
+                        <li>The diff calculation does not finish in 10 seconds, meaning there is too much difference.</li>
+                    </ul>
+                    The algorithm for calculating the diff is based on <a href="http://www.xmailserver.org/diff2.pdf" target="_blank">this paper</a>.
+                </p>
+            </section>
+            <section>
+                <h2>What you MUST NOT do</h2>
+                <p>We may deduct points or disqualify your team if we notice any of the following violation:</p>
+                <ul>
+                    <li>Attempt to attack this dashboard</li>
+                    <li>Attempt to overwrite other teams' source codes by any means</li>
+                    <li>Attempt to exploit the scoring system (the comparator)</li>
+                    <li>Attempt to send large requests to this dashboard at once</li>
+                    <li>Overloading CPU or consuming a large amount of disk space</li>
+                </ul>
+                <p>Kindly tell the admin if you find any suspicious behavior or bugs :)</p>
+            </section>
+        </main>
+    </body>
+</html>

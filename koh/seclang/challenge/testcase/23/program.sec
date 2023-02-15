@@ -1,0 +1,11 @@
+func main() {
+    s = 100;
+    x = scan();
+
+    k = 0;
+    while x > s {
+        s = s*101 / 100;
+        k = k + 1;
+    }
+    print(k);
+}

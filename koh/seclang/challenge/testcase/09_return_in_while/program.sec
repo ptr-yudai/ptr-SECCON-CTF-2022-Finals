@@ -1,0 +1,18 @@
+
+func f(x) {
+    i = 0;
+    while true {
+        if x == 0 {
+            return i;
+        }
+        if x % 2 == 1 {
+            i = i + 1;
+        }
+        x = x / 2;
+    }
+}
+
+func main() {
+    i = scan();
+    print(f(i));
+}

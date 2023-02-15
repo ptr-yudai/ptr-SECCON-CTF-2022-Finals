@@ -1,0 +1,76 @@
+func crt(xs, ys, size) {
+    sum = 0;
+    prod = 1;
+
+    i = 0;
+    while i < size {
+        prod = prod * ys[i];
+        i = i + 1;
+    }
+
+    i = 0;
+    j = 0;
+    p = 0;
+    while i < size {
+        p = prod / ys[i];
+        sum = sum + (xs[i] * mul_inv(p, ys[i])) * p;
+        
+
+        i = i + 1;
+        j = j + 1;
+    }
+
+    return sum % prod;
+}
+
+
+func main() {
+	len = scan();
+    xs = [0 as int; 0x100];
+    ys = [0 as int; 0x100];
+
+    i = 0;
+    while i < len {
+        xs[i] = scan();
+        ys[i] = scan();
+        i = i + 1;
+    }
+
+    print(crt(xs, ys, len));
+
+    return 0;
+}
+
+func mul_inv(x, y) {
+    y0 = y;
+    x0 = 0;
+    x1 = 1;
+
+    if y == 1 {
+        return 1;
+    }
+
+    a = [${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}];
+    b = [${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}];
+    q = 0;
+    z = 0;
+    x2 = 0;
+    while x > 1 {
+        q = x / y;
+
+        z = x % y;
+        x = y;
+        y = z;
+
+        x2 = x0;
+        x0 = x1 - q * x0;
+        x1 = x2;
+    }
+    while x1 < 0 {
+        x1 = x1 + y0;
+    }
+
+    return x1;
+}
+
+

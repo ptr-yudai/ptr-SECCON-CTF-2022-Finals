@@ -1,0 +1,20 @@
+func sum(n) {
+  if n >= 0 {
+    if n == 0 {
+      return 0;
+    } else {
+      return sum(n-1) + n;
+    }
+  }
+  return false;
+}
+
+func main() {
+  print("1 + 2 + 3 + ... + 100 = ");
+  print(sum(100));
+  print("\n");
+  print("sum(-123) = ");
+  print(sum(-123));
+  print("\n");
+  return 0;
+}

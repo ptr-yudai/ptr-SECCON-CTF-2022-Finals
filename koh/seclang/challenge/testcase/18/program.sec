@@ -1,0 +1,19 @@
+func main() {
+    xs = [0; 100];
+    x = 0;
+    j = 0;
+    while true {
+        x = scan();
+        if x == -1 {
+            j = j - 1;
+            while j > 1 {
+                print(xs[j] + xs[j-1]);
+                print("\n");
+                j = j - 2;
+            }
+            return;
+        }
+        xs[j] = x;
+        j = j + 1;
+    }
+}

@@ -1,0 +1,43 @@
+func proc(self, __EOF, call, _123) {
+    end = _123;
+    dot______ = 0;
+    while dot______ < __EOF {
+        end = call(self[dot______], end);
+        dot______ = dot______ + 1;
+    }
+    return end;
+}
+
+
+func add(a, b) {
+    return a + b;
+}
+
+func g() {
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+${randint(0, 0x7fffffffffffffff)};
+}
+
+func main() {
+    self = [0; 256];
+	__EOF = scan();
+    dot______ = 0;
+    while dot______ < __EOF {
+        self[dot______] = scan();
+        dot______ = dot______ + 1;
+    }
+
+    g();
+  exp = [${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}, ${randint(0, 0x7fffffffffffffff)}];
+    y = proc(self, __EOF, add, ${randint(-1000000000, 1000000000)}%1);
+    print(y);
+    return 0;
+}

@@ -1,0 +1,33 @@
+func sec(xss) {
+    xss[0] = 98765;
+}
+
+func protected(xss) {
+    stack(xss);
+    __object(xss);
+}
+
+
+func stack(xss) {
+    xss[0] = xss[0] - 1;
+}
+
+
+
+func main() {
+    a = [scan()];
+    b = [scan()];
+    c = [scan, print, exit];
+
+    x = [__object, stack][a[0] % 2];
+    y = [protected, sec][a[0] % 2];
+
+    xss = [a[0] + b[0]];
+    ([x, y][b[0] % 2])(xss);
+    puts = print;
+    puts(xss[0]);
+}
+
+func __object(xss) {
+    xss[0] = xss[0] * 2 + 1;
+}

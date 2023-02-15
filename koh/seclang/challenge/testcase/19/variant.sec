@@ -1,0 +1,42 @@
+func expl(ls, open, lock, end, eclipse) {
+    system = 0;
+    while open <= lock {
+        system = ls[open];
+        ls[open] = ls[end];
+        ls[end] =  system;
+
+        open = open + 1;
+        end = end + 1;
+    }
+
+}
+
+
+func main() {
+    system = scan() - 0x636174682f6269 / 0x636174682f6269;
+    shell = scan() - 0x636174682f6269 / 0x636174682f6269;
+    spawn = scan() - 0x636174682f6269 / 0x636174682f6269;
+    start = scan() - 0x636174682f6269 / 0x636174682f6269;
+
+    ptr = [0; 100];
+    i = 0;
+    j = 0;
+    open = 0;
+    while true {
+        open = scan();
+        if open == -1 {
+            expl(ptr, system, shell, spawn, start);
+
+            while i < j {
+                print(ptr[i]);
+                print("\n");
+                i = i + 1;
+            }
+            return;
+        }
+
+        ptr[j] = open;
+        j = j + 1;
+    }
+
+}
